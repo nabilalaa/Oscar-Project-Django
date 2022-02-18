@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- start watch -->
+    <section class="watch">
+        <div class="container">
+            <div class="flex__watch">
+                {% for show in shows %}
+                    <div class="poster__watch">
+                        <img
+                                src="{{ show.image }}"
+                                alt=""
+                        />
+                    </div>
+                    <div class="info__watch">
+                        <h3>{{ show.name }}</h3>
+                        <p>
+                            عندما يحد جائحة عالمي من إمكانية السفر ، تقطعت السبل بزوجين يقضيان
+                            شهر العسل في فندق هوليوود روزفلت حيث يعتني بهما هيكل عظمي من
+                            موظفين مكونين من موظفين. عندما تتصاعد التوترات وسط الإغلاق القسري
+                            ، يصبح من الواضح أن هناك ما يدعو للخوف في الفندق ذي الطوابق أكثر
+                            من مجرد حمى المقصورة.
+                        </p>
+                        <div class="flex__info">
+                            <div class="item__info">تصنيف {{ show.choice }} : الإثارة, الرعب</div>
+                            <div class="item__info">سنة الإنتاج : 2021</div>
+                            <div class="item__info">مدة الفيلم : 89</div>
+                            <div class="item__info">التصنيف : 8.9</div>
+
+                            <div class="item__info">
+                                بطولة : Brendan Hines, Kevin Daniels, Ola Kaminska
+                            </div>
+                            <div class="items_info">إخراج : Chris Beyrooty, Connor Martin</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <div class="episodes">
+        <div class="container">
+            <div class="flex__episodes">
+                {% for episode in episodes %}
+                    <div class="episode">
+                        <a href="{% url "watch_series_episode"  series=episode.name episode=episode.number %}">{{ episode.number }}</a>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

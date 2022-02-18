@@ -7,8 +7,8 @@ def index(request):
     context = {
         "movies_netflix": Movie.objects.filter(platform="netflix"),
         "movies_amazon": Movie.objects.filter(platform="amazon"),
-        "series_netflix": Serial.objects.filter(platform="netflix"),
-        "series_amazon": Serial.objects.filter(platform="amazon"),
+        "series_netflix": Show.objects.filter(platform="netflix"),
+        "series_amazon": Show.objects.filter(platform="amazon"),
         "banners": Banner.objects.all()
 
     }
@@ -57,9 +57,26 @@ def netflix_series(request):
     return render(request, "netflix_series.html", context)
 
 
-def watch_page(request, slug):
+def watch_movies(request, movies):
     context = {
-        "slugs": Movie.objects.filter(name=slug.replace("-", " ")),
-        "test": slugify(slug)
+        "movies": Movie.objects.filter(name=movies.replace("-", " ")),
     }
-    return render(request, "watch_page.html", context)
+    return render(request, "watch_movies.html", context)
+
+
+def watch_series(request, series, ):
+    context = {
+        "shows": Show.objects.filter(name=series.replace("-", " ")),
+        "episodes": Episode.objects.filter(name=series.replace("-", " "))
+    }
+    return render(request, "watch_series.html", context)
+
+
+def watch_series_episode(request, series, episode):
+    context = {
+        "shows": Show.objects.filter(name=series.replace("-", " ")),
+        "episodes": Episode.objects.filter(name=series.replace("-", " ")),
+        "current_episode": Episode.objects.filter(name=series.replace("-", " "), number=episode),
+
+    }
+    return render(request, "watch_series_episode.html", context)

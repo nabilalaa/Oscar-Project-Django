@@ -37,7 +37,7 @@
             <div class="flex__section">
                 {% for movies in movies_netflix|slice:"0:12" %}
                     <div class="items">
-                        <a class="item" href="{% url "watch" slug=movies.name|name_to_url %}">
+                        <a class="item" href="{% url "watch_movies" movies=movies.name|name_to_url %}">
                             <div class="poster">
                                 <img src="{{ movies.image }}" alt=""/>
                             </div>
@@ -67,7 +67,7 @@
             <div class="flex__section">
                 {% for movies in movies_amazon|slice:"0:12" %}
                     <div class="items">
-                        <a class="item" href="{% url "watch" slug=movies.name|name_to_url %}">
+                        <a class="item" href="{% url "watch_movies" movies=movies.name|name_to_url %}">
                             <div class="poster">
                                 <img src="{{ movies.image }}" alt=""/>
                             </div>
@@ -99,7 +99,7 @@
             <div class="flex__section">
                 {% for series in series_netflix|slice:"0:12" %}
                     <div class="items">
-                        <a class="item" href="{% url "watch" slug=series.name|name_to_url %}">
+                        <a class="item" href="{% url "watch_series" series=series.name|name_to_url %}">
                             <div class="poster">
                                 <img src="{{ series.image }}" alt=""/>
                             </div>
@@ -129,7 +129,7 @@
             <div class="flex__section">
                 {% for series in series_amazon|slice:"0:12" %}
                     <div class="items">
-                        <a class="item" href="{% url "watch" slug=series.name|name_to_url %}">
+                        <a class="item" href="{% url "watch_series" series=series.name|name_to_url %}">
                             <div class="poster">
                                 <img src="{{ series.image }}" alt=""/>
                             </div>

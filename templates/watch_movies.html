@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- start watch -->
+    <section class="watch">
+        <div class="container">
+            <div class="flex__watch">
+                {% for movie in movies %}
+                    <div class="poster__watch">
+                        <img
+                                src="{{ movie.image }}"
+                                alt=""
+                        />
+                    </div>
+                    <div class="info__watch">
+                        <h3>{{ movie.name }}</h3>
+                        <p>
+                            عندما يحد جائحة عالمي من إمكانية السفر ، تقطعت السبل بزوجين يقضيان
+                            شهر العسل في فندق هوليوود روزفلت حيث يعتني بهما هيكل عظمي من
+                            موظفين مكونين من موظفين. عندما تتصاعد التوترات وسط الإغلاق القسري
+                            ، يصبح من الواضح أن هناك ما يدعو للخوف في الفندق ذي الطوابق أكثر
+                            من مجرد حمى المقصورة.
+                        </p>
+                        <div class="flex__info">
+                            <div class="item__info">تصنيف {{ movie.type }} : الإثارة, الرعب</div>
+                            <div class="item__info">سنة الإنتاج : {{ movie.date_production }}</div>
+                            <div class="item__info">مدة الفيلم : {{ movie.durations }}</div>
+                            <div class="item__info">التصنيف : {{ movie.rate }}</div>
+
+                            <div class="item__info">
+                                بطولة : {{ movie.stars }}
+                            </div>
+                            <div class="items_info">إخراج : {{ movie.creator }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+                {% for movie in movies %}
+                <video controls="" crossorigin="" id="player">
+                    <source
+                            src="{{ movie.video }}"
+                            type="video/mp4"
+                            size="720"
+                    />
+                </video>
+            {% endfor %}
+        </div>
+    </section>
+    <div class="episodes">
+        <div class="container">
+            <div class="flex__episodes">
+                {% for movie in movies %}
+                        <div class="episode" STYLE="width: 100%"><a href="">إخراج: {{ movie.creator }}</a></div>
+                        <div class="episode" STYLE="width: 100%"><a href="">تمثيل: {{ movie.stars }}</a></div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

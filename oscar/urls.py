@@ -9,6 +9,8 @@ urlpatterns = [
     path("netflix", netflix, name="netflix"),
     path("netflixMovies", netflix_movies, name="netflix_movies"),
     path("netflixSeries", netflix_series, name="netflix_series"),
-    path("watch/<str:slug>", watch_page, name="watch"),
+    path("watch_movies/<str:movies>", watch_movies, name="watch_movies"),
+    path("watch_series/<str:series>", watch_series, name="watch_series"),
+    path("watch/<str:series>/<int:episode>", watch_series_episode, name="watch_series_episode"),
 
 ]
