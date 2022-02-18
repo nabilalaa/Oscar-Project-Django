@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- start section amazon movies -->
+    <div class="section">
+        <div class="container">
+            <div class="title__section">
+                <div class="title__inner">
+                    <h3>آخر افلام Amazon</h3>
+                    <div class="icon"><img src="{% static "images/amazon.png" %}" alt=""/></div>
+                </div>
+            </div>
+            <div class="flex__section">
+                <div class="items">
+                    <a class="item" href="">
+                        <div class="poster">
+                            <img
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs36a7zMGyeFCM0g__uBEZIAjAOcMDuKJMBxLJt1KU9F-B7zQYQXax_YvF4pnPty1b34M&usqp=CAU"
+                                    alt=""
+                            />
+                        </div>
+                        <div class="overlay">
+                            <div class="info">
+                                <div class="play"><i class="fas fa-play"></i></div>
+                                <div class="rate">7.0</div>
+                                <div class="name">مسلسل La Casa de Papel الموسم الخامس</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+                <div class="items"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

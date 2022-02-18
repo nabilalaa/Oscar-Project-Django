@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- start watch -->
+    <section class="watch">
+        <div class="container">
+            <div class="flex__watch">
+                {% for slug in slugs %}
+                    <div class="poster__watch">
+                        <img
+                                src="{{ slug.image }}"
+                                alt=""
+                        />
+                    </div>
+                    <div class="info__watch">
+                        <h3>{{ slug.name }}</h3>
+                        <p>
+                            عندما يحد جائحة عالمي من إمكانية السفر ، تقطعت السبل بزوجين يقضيان
+                            شهر العسل في فندق هوليوود روزفلت حيث يعتني بهما هيكل عظمي من
+                            موظفين مكونين من موظفين. عندما تتصاعد التوترات وسط الإغلاق القسري
+                            ، يصبح من الواضح أن هناك ما يدعو للخوف في الفندق ذي الطوابق أكثر
+                            من مجرد حمى المقصورة.
+                        </p>
+                        <div class="flex__info">
+                            <div class="item__info">تصنيف {{ slug.choice }} : الإثارة, الرعب</div>
+                            <div class="item__info">سنة الإنتاج : 2021</div>
+                            <div class="item__info">مدة الفيلم : 89</div>
+                            <div class="item__info">التصنيف : 8.9</div>
+
+                            <div class="item__info">
+                                بطولة : Brendan Hines, Kevin Daniels, Ola Kaminska
+                            </div>
+                            <div class="items_info">إخراج : Chris Beyrooty, Connor Martin</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% for slug in slugs %}
+                <video controls="" crossorigin="" id="player">
+                    <source
+                            src="{{ slug.video }}"
+                            type="video/mp4"
+                            size="720"
+                    />
+                </video>
+            {% endfor %}
+        </div>
+    </section>
+    <div class="episodes">
+        <div class="container">
+            <div class="flex__episodes">
+                {% for slug in slugs %}
+                    {% if slug.choice == "المسلسل" %}
+                        <div class="episode"><a href="">الحلقة الاولى</a></div>
+                    {% else %}
+                        <div class="episode" STYLE="width: 100%"><a href="">إخراج: {{ slug.creator }}</a></div>
+                        <div class="episode" STYLE="width: 100%"><a href="">تمثيل: {{ slug.stars }}</a></div>
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
