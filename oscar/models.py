@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Movie(models.Model):
@@ -28,7 +29,7 @@ class Episode(models.Model):
     number = models.IntegerField(null=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.number}"
 
 
 class Show(models.Model):
@@ -44,7 +45,6 @@ class Show(models.Model):
     published = models.DateTimeField(auto_now=True)
     video = models.URLField(null=True)
     type = models.CharField(max_length=50, null=True, default="المسلسل")
-    episode = models.ForeignKey(Episode,on_delete=models.CASCADE,null=True)
 
     class Meta():
         ordering = ["-published"]
@@ -59,3 +59,13 @@ class Banner(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Favourite(models.Model):
+    name = models.CharField(max_length=150, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    rate = models.FloatField(null=True)
+    image = models.URLField(null=True)
+
+    def __str__(self):
+        return f"{self.name}"

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_tags %}
 {% block content %}
     <!-- start banner -->
     <section class="banner bannerNetflix__img">
@@ -23,34 +24,22 @@
                 </div>
             </div>
             <div class="flex__section">
-                <div class="items">
-                    <a class="item" href="">
-                        <div class="poster">
-                            <img
-                                    src="https://www.faselhd.top/wp-content/uploads/2021/09/MV5BNDJkYzY3MzMtMGFhYi00MmQ4LWJkNTgtZGNiZWZmMTMxNzdlXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UY720_-400x600.jpg"
-                                    alt=""
-                            />
-                        </div>
-                        <div class="overlay">
-                            <div class="info">
-                                <div class="play"><i class="fas fa-play"></i></div>
-                                <div class="rate">7.0</div>
-                                <div class="name">مسلسل La Casa de Papel الموسم الخامس</div>
+                {% for movies in movies_netflix|slice:"0:12" %}
+                    <div class="items">
+                        <a class="item" href="{% url "watch_movies" movies=movies.name|name_to_url %}">
+                            <div class="poster">
+                                <img src="{{ movies.image }}" alt=""/>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
+                            <div class="overlay">
+                                <div class="info">
+                                    <div class="play"><i class="fas fa-play"></i></div>
+                                    <div class="rate">{{ movies.rate }}</div>
+                                    <div class="name">{{ movies.name }}</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -66,34 +55,22 @@
                 </div>
             </div>
             <div class="flex__section">
-                <div class="items">
-                    <a class="item" href="">
-                        <div class="poster">
-                            <img
-                                    src="https://www.faselhd.top/wp-content/uploads/2021/09/MV5BNDJkYzY3MzMtMGFhYi00MmQ4LWJkNTgtZGNiZWZmMTMxNzdlXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UY720_-400x600.jpg"
-                                    alt=""
-                            />
-                        </div>
-                        <div class="overlay">
-                            <div class="info">
-                                <div class="play"><i class="fas fa-play"></i></div>
-                                <div class="rate">7.0</div>
-                                <div class="name">مسلسل La Casa de Papel الموسم الخامس</div>
+                {% for series in series_netflix|slice:"0:12" %}
+                    <div class="items">
+                        <a class="item" href="{% url "watch_series" series=series.name|name_to_url %}">
+                            <div class="poster">
+                                <img src="{{ series.image }}" alt=""/>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
-                <div class="items"></div>
+                            <div class="overlay">
+                                <div class="info">
+                                    <div class="play"><i class="fas fa-play"></i></div>
+                                    <div class="rate">{{ series.rate }}</div>
+                                    <div class="name">{{ series.name }}</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

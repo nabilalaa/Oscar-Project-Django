@@ -1,102 +1,108 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ar">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Oscar</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="{% static "css/all.min.css" %}" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Oscar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static "css/all.min.css" %}"/>
 
-		<link rel="stylesheet" href="{% static "css/stylesheet.css" %}" />
-		<link rel="stylesheet" href="{% static "css/normalize.css" %}" />
-		<link rel="stylesheet" href="{% static "css/style.css" %}" />
-		<link rel="stylesheet" href="{% static "css/responsive.css" %}" />
-	</head>
-	<body>
-		<!-- start nav -->
-		<nav>
-			<div class="container">
-				<div class="flex__nav">
-					<div class="logo"><a href="{% url "home" %}">Oscar</a></div>
-					<ul class="links">
-						<li><a href="{% url "home" %}">الصفحة الرئيسية</a></li>
-						<li class="btnmenu">
-							<a href="" style="pointer-events: none; cursor: default;">المنصات&ThickSpace;&ThickSpace;<i class="fas fa-caret-down"></i>
-							</a>
-							<ul class="drop__menu">
-								<li><a href="{% url "amazon" %}">amazon</a></li>
-								<li><a href="{% url "netflix" %}">netflix</a></li>
-							</ul>
-						</li>
-						<li><a href="#netflix_movies">افلام</a></li>
-						<li><a href="#netflix_series">مسلسلات</a></li>
-						<li><a href="#">اتصل بنا</a></li>
-						<li><a href="#">عنا</a></li>
-					</ul>
-					<div class="sidemenu__btn"><i class="fas fa-bars"></i></div>
-					<ul class="register">
-						<li><a href="">دخول</a></li>
-						<li><a href="">تسجيل</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<div class="side__menu">
-			<div class="closemenu__btn"><i class="fas fa-times"></i></div>
-			<div class="side__logo">Oscar</div>
-			<ul class="side__links">
-				<li><a href="#">الصفحة الرئيسية</a></li>
-				<li class="dropsidemenu">
-					<a href="#" class="btnsidemenu"
-						>المنصات&ThickSpace;<i class="fas fa-caret-down"></i>
-					</a>
-					<ul class="dropSide__menu">
-						<li><a href="">amazon</a></li>
-						<li><a href="">netflix</a></li>
-					</ul>
-				</li>
-				<li><a href="#">افلام</a></li>
-				<li><a href="#">مسلسلات</a></li>
-				<li><a href="#">اتصل بنا</a></li>
-				<li><a href="#">عنا</a></li>
-			</ul>
-		</div>
-        {% block content %}
+    <link rel="stylesheet" href="{% static "css/stylesheet.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/normalize.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/responsive.css" %}"/>
+</head>
+<body>
+<!-- start nav -->
+<nav>
+    <div class="container">
+        <div class="flex__nav">
+            <div class="logo"><a href="{% url "home" %}">Oscar</a></div>
+            <ul class="links">
+                <li><a href="{% url "home" %}">الصفحة الرئيسية</a></li>
+                <li class="btnmenu">
+                    <a href="" style="pointer-events: none; cursor: default;">المنصات&ThickSpace;&ThickSpace;<i
+                            class="fas fa-caret-down"></i>
+                    </a>
+                    <ul class="drop__menu">
+                        <li><a href="{% url "amazon" %}">amazon</a></li>
+                        <li><a href="{% url "netflix" %}">netflix</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url "movies" %}">افلام</a></li>
+                <li><a href="{% url "series" %}">مسلسلات</a></li>
+                <li><a href="#">اتصل بنا</a></li>
+                <li><a href="#">عنا</a></li>
+            </ul>
+            <div class="sidemenu__btn"><i class="fas fa-bars"></i></div>
+            <ul class="register">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url "logout" %}">خروج</a></li>
+                    <li><a href="{% url "favourite" username=user.username %}">{{ user.username }}</a></li>
+                {% else %}
+                    <li><a href="{% url "login" %}">دخول</a></li>
+                    <li><a href="{% url "register" %}">تسجيل</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="side__menu">
+    <div class="closemenu__btn"><i class="fas fa-times"></i></div>
+    <div class="side__logo">Oscar</div>
+    <ul class="side__links">
+        <li><a href="#">الصفحة الرئيسية</a></li>
+        <li class="dropsidemenu">
+            <a href="#" class="btnsidemenu"
+            >المنصات&ThickSpace;<i class="fas fa-caret-down"></i>
+            </a>
+            <ul class="dropSide__menu">
+                <li><a href="">amazon</a></li>
+                <li><a href="">netflix</a></li>
+            </ul>
+        </li>
+        <li><a href="#">افلام</a></li>
+        <li><a href="#">مسلسلات</a></li>
+        <li><a href="#">اتصل بنا</a></li>
+        <li><a href="#">عنا</a></li>
+    </ul>
+</div>
+{% block content %}
 
-        {% endblock %}
-    		<!-- start footer -->
-		<footer>
-			<div class="container">
-				<div class="flex__footer">
-					<div class="links__footer logo__footer"><a href="{% url "home" %}">Oscar</a></div>
-					<ul class="links__footer">
-						<li><a href="{% url "home" %}">الصفحة الرئيسية</a></li>
-						<li><a href="#">المنصات</a></li>
-						<li><a href="#">افلام</a></li>
-						<li><a href="#">مسلسلات</a></li>
-						<li><a href="#">اتصل بنا</a></li>
-						<li><a href="#">عنا</a></li>
-					</ul>
-					<ul class="links__footer">
-						<li><a href="#">تسجيل</a></li>
-						<li><a href="#">دخول</a></li>
-					</ul>
-					<ul class="links__footer">
-						<li><a href="#">Facebook</a></li>
-						<li><a href="#">Instagram</a></li>
-						<li><a href="#">Twitter</a></li>
-					</ul>
-				</div>
-			</div>
-			<p class="copyright">&copy;2022 nabil alaa All Rights Reserved</p>
-		</footer>
-		<script src="{% static "" %}js/main.js"></script>
-		<script src="{% static "" %}js/slider.js"></script>
-	</body>
+{% endblock %}
+<!-- start footer -->
+<footer>
+    <div class="container">
+        <div class="flex__footer">
+            <div class="links__footer logo__footer"><a href="{% url "home" %}">Oscar</a></div>
+            <ul class="links__footer">
+                <li><a href="{% url "home" %}">الصفحة الرئيسية</a></li>
+                <li><a href="#">المنصات</a></li>
+                <li><a href="{% url "movies" %}">افلام</a></li>
+                <li><a href="{% url "series" %}">مسلسلات</a></li>
+                <li><a href="#">اتصل بنا</a></li>
+                <li><a href="#">عنا</a></li>
+            </ul>
+            <ul class="links__footer">
+                <li><a href="{% url "register" %}">تسجيل</a></li>
+                <li><a href="{% url "login" %}">دخول</a></li>
+            </ul>
+            <ul class="links__footer">
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+        </div>
+    </div>
+    <p class="copyright">&copy;2022 nabil alaa All Rights Reserved</p>
+</footer>
+<script src="{% static "" %}js/main.js"></script>
+<script src="{% static "" %}js/slider.js"></script>
+</body>
 </html>

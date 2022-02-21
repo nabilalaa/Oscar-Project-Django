@@ -1,28 +1,25 @@
 {% extends "base.html" %}
 {% load custom_tags %}
-{% load static %}
 {% block content %}
-    <!-- start section amazon movies -->
     <div class="section">
         <div class="container">
             <div class="title__section">
                 <div class="title__inner">
-                    <h3>آخر افلام Amazon</h3>
-                    <div class="icon"><img src="{% static "images/amazon.png" %}" alt=""/></div>
+                    <h3>المفضلات</h3>
                 </div>
             </div>
             <div class="flex__section">
-                {% for movies in movies_amazon|slice:"0:12" %}
+                {% for favourite in favourites %}
                     <div class="items">
-                        <a class="item" href="{% url "watch_movies" movies=movies.name|name_to_url %}">
+                        <a class="item" href="{% url "watch_movies" movies=favourite.name|name_to_url %}">
                             <div class="poster">
-                                <img src="{{ movies.image }}" alt=""/>
+                                <img src="{{ favourite.image }}" alt=""/>
                             </div>
                             <div class="overlay">
                                 <div class="info">
                                     <div class="play"><i class="fas fa-play"></i></div>
-                                    <div class="rate">{{ movies.rate }}</div>
-                                    <div class="name">{{ movies.name }}</div>
+                                    <div class="rate">{{ favourite.rate }}</div>
+                                    <div class="name">{{ favourite.name }}</div>
                                 </div>
                             </div>
                         </a>
