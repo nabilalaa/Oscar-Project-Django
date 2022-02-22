@@ -57,18 +57,19 @@
     <div class="closemenu__btn"><i class="fas fa-times"></i></div>
     <div class="side__logo">Oscar</div>
     <ul class="side__links">
-        <li><a href="#">الصفحة الرئيسية</a></li>
+        <li><a href="{% url "home" %}">الصفحة الرئيسية</a></li>
         <li class="dropsidemenu">
-            <a href="#" class="btnsidemenu"
-            >المنصات&ThickSpace;<i class="fas fa-caret-down"></i>
+            <a href="#" class="btnsidemenu">
+                المنصات&ThickSpace;
+                <i class="fas fa-caret-down"></i>
             </a>
             <ul class="dropSide__menu">
-                <li><a href="">amazon</a></li>
-                <li><a href="">netflix</a></li>
+                <li><a href="{% url "amazon" %}">amazon</a></li>
+                <li><a href="{% url "netflix" %}">netflix</a></li>
             </ul>
         </li>
-        <li><a href="#">افلام</a></li>
-        <li><a href="#">مسلسلات</a></li>
+        <li><a href="{% url "movies" %}">افلام</a></li>
+        <li><a href="{% url "series" %}">مسلسلات</a></li>
         <li><a href="#">اتصل بنا</a></li>
         <li><a href="#">عنا</a></li>
     </ul>

@@ -27,13 +27,13 @@
                             </div>
                             <div class="item__info">إخراج : {{ movie.creator }}</div>
                             {% if user.is_authenticated %}
-                                <form class="item__info" method="post">
+                                <form class="item__info custom_form" method="post">
                                     {% csrf_token %}
                                     <input name="name" value="{{ movie.name }}" hidden>
-                                    <input name="username" value="{{ user.id }}">
-                                    <input name="rate" value="{{ movie.rate }}">
-                                    <input name="image" value="{{ movie.image }}">
-                                    <input type="submit" value="اضافة الى المفضلات">
+                                    <input name="username" value="{{ user.id }}" hidden>
+                                    <input name="rate" value="{{ movie.rate }}" hidden>
+                                    <input name="image" value="{{ movie.image }}" hidden>
+                                    <input class="custom_input" type="submit" value="اضافة الى المفضلات">
                                     {% if messages %}
                                         {% for msg in messages %}
                                             {{ msg }}
