@@ -23,14 +23,14 @@
                         </p>
                         <div class="flex__info">
                             <div class="item__info">تصنيف {{ show.choice }} : الإثارة, الرعب</div>
-                            <div class="item__info">سنة الإنتاج : 2021</div>
-                            <div class="item__info">مدة الفيلم : 89</div>
-                            <div class="item__info">التصنيف : 8.9</div>
+                            <div class="item__info">سنة الإنتاج : {{ show.date_production }}</div>
+                            <div class="item__info">مدة {{ show.type }} : 89</div>
+                            <div class="item__info">التصنيف : {{ show.rate }}</div>
 
                             <div class="item__info">
-                                بطولة : Brendan Hines, Kevin Daniels, Ola Kaminska
+                                بطولة : {{ show.stars}}
                             </div>
-                            <div class="items_info">إخراج : Chris Beyrooty, Connor Martin</div>
+                            <div class="items_info">إخراج : {{ show.creator }} </div>
                             {% if user.is_authenticated %}
                                 <form class="item__info custom_form" method="post">
                                     {% csrf_token %}

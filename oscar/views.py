@@ -93,7 +93,7 @@ def watch_movies(request, movies):
     image = request.POST.get("image")
     if request.method == "POST" and name_movie and username and image and rate:
         if Favourite.objects.filter(name=name_movie):
-            messages.error(request, "موجود بالفعل")
+            messages.error(request, "تم الاضافة")
             print(request.POST)
         else:
             Favourite.objects.create(user_id=username, name=name_movie, rate=rate, image=image)
@@ -107,7 +107,7 @@ def watch_series(request, series):
     image = request.POST.get("image")
     if request.method == "POST" and name_series and username and image and rate:
         if Favourite.objects.filter(name=name_series):
-            messages.error(request, "موجود بالفعل")
+            messages.error(request, "تم الاضافة")
             print(request.POST)
         else:
             Favourite.objects.create(user_id=username, name=name_series, rate=rate, image=image)
@@ -119,6 +119,16 @@ def watch_series(request, series):
 
 
 def watch_series_episode(request, series, episode):
+    name_series = request.POST.get("name")
+    username = request.POST.get("username")
+    rate = request.POST.get("rate")
+    image = request.POST.get("image")
+    if request.method == "POST" and name_series and username and image and rate:
+        if Favourite.objects.filter(name=name_series):
+            messages.error(request, "تم الاضافة")
+            print(request.POST)
+        else:
+            Favourite.objects.create(user_id=username, name=name_series, rate=rate, image=image)
     context = {
         "shows": Show.objects.filter(name=series.replace("-", " ")),
         "episodes": Episode.objects.filter(name=series.replace("-", " ")),
