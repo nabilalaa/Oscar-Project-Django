@@ -9,7 +9,7 @@
                     <div class="poster__watch">
                         <img
                                 src="{{ show.image }}"
-                                alt=""
+                                alt="{{ show.name }}"
                         />
                     </div>
                     <div class="info__watch">
@@ -34,10 +34,10 @@
                             {% if user.is_authenticated %}
                                 <form class="item__info custom_form" method="post">
                                     {% csrf_token %}
-                                    <input name="name" value="{{ movie.name }}" hidden>
+                                    <input name="name" value="{{ show.name }}" hidden>
                                     <input name="username" value="{{ user.id }}" hidden>
-                                    <input name="rate" value="{{ movie.rate }}" hidden>
-                                    <input name="image" value="{{ movie.image }}" hidden>
+                                    <input name="rate" value="{{ show.rate }}" hidden>
+                                    <input name="image" value="{{ show.image }}" hidden>
                                     <input class="custom_input" type="submit" value="اضافة الى المفضلات">
                                     {% if messages %}
                                         {% for msg in messages %}
