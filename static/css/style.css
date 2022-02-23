@@ -258,7 +258,7 @@ nav {
 .pagination li {
 	border-radius: 50%;
 	background-color: #0000003a;
-    box-shadow: 0 0 3px 0px;
+	box-shadow: 0 0 3px 0px;
 	transition: 0.3s;
 	width: 15px;
 	height: 15px;
@@ -312,7 +312,7 @@ nav {
 .items {
 	width: calc(95% / 6);
 	height: 300px;
-	margin: 0 4.7px 15px 4.7px;
+	margin: 0 4.5px 15px 4.4px;
 	background-color: #fca311;
 }
 
@@ -517,7 +517,7 @@ button {
 	cursor: pointer;
 }
 
-.custom_form{
+.custom_form {
 	display: block;
 	padding: 0;
 	background-color: transparent;
@@ -525,7 +525,7 @@ button {
 	margin: 0;
 }
 
-.custom_input{
+.custom_input {
 	background-color: #fca311;
 	font-weight: bold;
 	cursor: pointer;
