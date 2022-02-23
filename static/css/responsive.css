@@ -1,6 +1,9 @@
 /* mobile  */
 
 @media (max-width: 576px) {
+	.container {
+		max-width: 100%;
+	}
 	.links {
 		display: none;
 	}
@@ -62,6 +65,9 @@
 
 /* Small */
 @media (min-width: 577px) and (max-width: 768px) {
+	.container {
+		max-width: 540px;
+	}
 	.links {
 		display: none;
 	}
@@ -105,6 +111,9 @@
 
 /* Medium */
 @media (min-width: 769px) and (max-width: 992px) {
+	.container {
+		max-width: 720px;
+	}
 	.links {
 		display: none;
 	}
@@ -130,6 +139,9 @@
 
 /* large */
 @media (min-width: 993px) and (max-width: 1199px) {
+	.container {
+		max-width: 960px;
+	}
 	.side__menu {
 		display: none;
 	}
@@ -147,6 +159,10 @@
 
 /* extra large */
 @media (min-width: 1200px) {
+	.container {
+		max-width: 1140px;
+	}
+
 	.side__menu {
 		display: none;
 	}
