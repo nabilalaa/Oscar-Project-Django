@@ -52,7 +52,7 @@
 		width: 100%;
 	}
 	.grid__section {
-		grid-template-columns: repeat(2, 200px);
+		grid-template-columns: repeat(1, 200px);
 		justify-content: center;
 	}
 	.next {
