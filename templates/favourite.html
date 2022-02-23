@@ -8,7 +8,7 @@
                     <h3>المفضلات</h3>
                 </div>
             </div>
-            <div class="grid_section">
+            <div class="grid__section">
                 {% for favourite in favourites %}
                     <div class="items">
                         <a class="item" href="{% url "watch_movies" movies=favourite.name|name_to_url %}">

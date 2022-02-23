@@ -13,7 +13,7 @@
                     </div>
                 </div>
             </div>
-            <div class="grid_section">
+            <div class="grid__section">
                 {% for movies in movies_netflix|slice:"0:12" %}
                     <div class="items">
                         <a class="item" href="{% url "watch_movies" movies=movies.name|name_to_url %}">
