@@ -21,7 +21,7 @@
                     <div class="icon"><img src="{% static "images/amazon.png" %}" alt=""/></div>
                 </div>
             </div>
-            <div class="flex__section">
+            <div class="grid_section">
                 {% for movies in movies_amazon|slice:"0:12" %}
                     <div class="items">
                         <a class="item" href="{% url "watch_movies" movies=movies.name|name_to_url %}">
@@ -50,7 +50,7 @@
                     <div class="icon"><img src="{% static "images/amazon.png" %}" alt=""/></div>
                 </div>
             </div>
-            <div class="flex__section">
+            <div class="grid_section">
                 {% for series in series_amazon|slice:"0:12" %}
                     <div class="items">
                         <a class="item" href="{% url "watch_series" series=series.name|name_to_url %}">

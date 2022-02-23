@@ -14,7 +14,7 @@
                 </div>
                 <a class="more" href="{% url "netflix_series" %}">شاهد المزيد</a>
             </div>
-            <div class="flex__section">
+            <div class="grid_section">
                 {% for series in series_netflix|slice:"0:12" %}
                     <div class="items">
                         <a class="item" href="{% url "watch_series" series=series.name|name_to_url %}">
@@ -44,7 +44,7 @@
                 </div>
                 <a class="more" href="{% url "amazon_series" %}">شاهد المزيد</a>
             </div>
-            <div class="flex__section">
+            <div class="grid_section">
                 {% for series in series_amazon|slice:"0:12" %}
                     <div class="items">
                         <a class="item" href="{% url "watch_series" series=series.name|name_to_url %}">
