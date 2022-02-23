@@ -36,7 +36,7 @@
                                     <input class="custom_input" type="submit" value="اضافة الى المفضلات">
                                     {% if messages %}
                                         {% for msg in messages %}
-                                            {{ msg }}
+                                            <span style="color: #e5e5e5">{{ msg }}</span>
                                         {% endfor %}
                                     {% endif %}
                                 </form>
@@ -61,8 +61,12 @@
         <div class="container">
             <div class="flex__episodes">
                 {% for movie in movies %}
-                    <div class="episode" STYLE="width: 100%"><a href="">إخراج: {{ movie.creator }}</a></div>
-                    <div class="episode" STYLE="width: 100%"><a href="">تمثيل: {{ movie.stars }}</a></div>
+                    <div class="episode" style=" pointer-events: none; cursor: default;width: 100%">
+                        <a href="">إخراج: {{ movie.creator }}</a>
+                    </div>
+                    <div class="episode" style=" pointer-events: none; cursor: default;width: 100%">
+                        <a href="">تمثيل: {{ movie.stars }}</a>
+                    </div>
                 {% endfor %}
 
             </div>
