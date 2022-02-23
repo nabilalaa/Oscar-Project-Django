@@ -52,7 +52,7 @@
 		width: 100%;
 	}
 	.grid__section {
-		grid-template-columns: repeat(1, 200px);
+		grid-template-columns: repeat(2, 200px);
 		justify-content: center;
 	}
 	.next {
@@ -98,7 +98,7 @@
 		flex: calc(95% / 4);
 	}
 	.grid__section {
-		grid-template-columns: repeat(2, 200px);
+		grid-template-columns: repeat(3, 1fr);
 		justify-content: center;
 	}
 	.next {
@@ -132,7 +132,7 @@
 	}
 
 	.grid__section {
-		grid-template-columns: repeat(3, 200px);
+		grid-template-columns: repeat(4, 1fr);
 		justify-content: center;
 	}
 }
@@ -149,7 +149,7 @@
 		display: none;
 	}
 	.grid__section {
-		grid-template-columns: repeat(4, 200px);
+		grid-template-columns: repeat(5, 1fr);
 		justify-content: center;
 	}
 	.episode {

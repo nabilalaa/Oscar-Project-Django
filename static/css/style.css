@@ -34,7 +34,7 @@ body {
 }
 
 img {
-	max-width: 100%;
+	width: 100%;
 	height: 100%;
 }
 
@@ -305,7 +305,7 @@ nav {
 }
 .grid__section {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	grid-template-columns: repeat(6, 1fr);
 	grid-gap: 20px 10px;
 }
 
