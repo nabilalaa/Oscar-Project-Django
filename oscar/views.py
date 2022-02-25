@@ -84,9 +84,6 @@ def netflix_series(request):
 
 
 def watch_movies(request, movies):
-    context = {
-        "movies": Movie.objects.filter(name=movies.replace("-", " ")),
-    }
     name_movie = request.POST.get("name")
     username = request.POST.get("username")
     rate = request.POST.get("rate")
@@ -97,6 +94,9 @@ def watch_movies(request, movies):
             print(request.POST)
         else:
             Favourite.objects.create(user_id=username, name=name_movie, rate=rate, image=image)
+    context = {
+        "movies": Movie.objects.filter(name=movies.replace("-", " ")),
+    }
     return render(request, "watch_movies.html", context)
 
 
@@ -113,7 +113,7 @@ def watch_series(request, series):
             Favourite.objects.create(user_id=username, name=name_series, rate=rate, image=image)
     context = {
         "shows": Show.objects.filter(name=series.replace("-", " ")),
-        "episodes": Episode.objects.filter(name=series.replace("-", " "))
+        "episodes": Episode.objects.filter(name__name=series.replace("-"," "))
     }
     return render(request, "watch_series.html", context)
 
@@ -131,8 +131,8 @@ def watch_series_episode(request, series, episode):
             Favourite.objects.create(user_id=username, name=name_series, rate=rate, image=image)
     context = {
         "shows": Show.objects.filter(name=series.replace("-", " ")),
-        "episodes": Episode.objects.filter(name=series.replace("-", " ")),
-        "current_episode": Episode.objects.filter(name=series.replace("-", " "), number=episode),
+        "episodes": Episode.objects.filter(name__name=series.replace("-"," ")),
+        "current_episode": Episode.objects.filter(name__name=series.replace("-"," "))
 
     }
     return render(request, "watch_series_episode.html", context)

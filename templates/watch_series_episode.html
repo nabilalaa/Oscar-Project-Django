@@ -14,7 +14,7 @@
                     </div>
                     <div class="info__watch">
                         {% for episode in episodes %}
-                            <h3> الحلقة {{ show.name }}{{ episode.number }}</h3>
+                            <h3>مشاهدة الحلقة {{ episode.number }} من {{ episode.name }}</h3>
 
                         {% endfor %}
                         <p>
@@ -69,7 +69,7 @@
             <div class="flex__episodes">
                 {% for episode in episodes %}
                     <div class="episode">
-                        <a href="{% url "watch_series_episode"  series=episode.name|name_to_url episode=episode.number %}">الحلقة {{ episode.number }}</a>
+                        <a href="{% url "watch_series_episode"  series=episode.name.name|name_to_url episode=episode.number %}">الحلقة {{ episode.number }}</a>
                     </div>
                 {% endfor %}
 

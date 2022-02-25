@@ -125,10 +125,6 @@ nav {
     border: 0;
 }
 
-/* .menu:hover .drop__menu {
-	opacity: 1;
-	visibility: visible;
-} */
 /* start side menu */
 
 .sidemenu__btn {
@@ -575,6 +571,7 @@ button {
     font-weight: bold;
     color: #14213d;
     font-size: 15px;
+    cursor: pointer;
 
 }
 

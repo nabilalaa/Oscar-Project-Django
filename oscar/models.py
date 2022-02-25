@@ -23,15 +23,6 @@ class Movie(models.Model):
         ordering = ["-published"]
 
 
-class Episode(models.Model):
-    name = models.CharField(max_length=150, null=True)
-    video = models.URLField(null=True)
-    number = models.IntegerField(null=True)
-
-    def __str__(self):
-        return f"{self.name} - {self.number}"
-
-
 class Show(models.Model):
     name = models.CharField(max_length=150, null=True)
     describe = models.TextField(null=True)
@@ -43,7 +34,6 @@ class Show(models.Model):
     image = models.URLField(null=True)
     platform = models.CharField(max_length=50, null=True)
     published = models.DateTimeField(auto_now=True)
-    video = models.URLField(null=True)
     type = models.CharField(max_length=50, null=True, default="المسلسل")
 
     class Meta():
@@ -51,6 +41,15 @@ class Show(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Episode(models.Model):
+    name = models.ForeignKey(Show, null=True, on_delete=models.CASCADE)
+    video = models.URLField(null=True)
+    number = models.IntegerField(null=True)
+
+    def __str__(self):
+        return f" {self.name}  ( الحلقة -->  {self.number} )"
 
 
 class Banner(models.Model):
