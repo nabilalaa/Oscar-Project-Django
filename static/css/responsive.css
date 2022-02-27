@@ -36,11 +36,15 @@
 	.flex__watch {
 		flex-direction: column;
 		justify-content: center;
+		align-items: center;
 	}
 	.poster__watch {
 		width: 60%;
 		height: auto;
 		margin-bottom: 20px;
+	}
+	.info__watch {
+		width: 100%;
 	}
 	.flex__info {
 		flex-direction: column;
@@ -81,12 +85,16 @@
 	.flex__watch {
 		flex-direction: column;
 		justify-content: center;
+		align-items: center;
 	}
 	.poster__watch {
-		width: 40%;
+		width: 60%;
 		height: auto;
 
 		margin-bottom: 20px;
+	}
+	.info__watch {
+		width: 100%;
 	}
 	.flex__info {
 		flex-direction: column;
