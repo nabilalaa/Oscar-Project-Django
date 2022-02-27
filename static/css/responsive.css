@@ -135,6 +135,9 @@
 		width: 35%;
 		height: auto;
 	}
+	.info__watch {
+		width: 65%;
+	}
 	.episode {
 		flex: calc(100% / 5);
 	}
@@ -162,6 +165,13 @@
 	}
 	.episode {
 		flex: calc(100% / 7);
+	}
+	.poster__watch {
+		width: 25%;
+		height: auto;
+	}
+	.info__watch {
+		width: 75%;
 	}
 }
 
