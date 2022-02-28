@@ -45,6 +45,7 @@
 	}
 	.info__watch {
 		width: 100%;
+		margin: 0;
 	}
 	.flex__info {
 		flex-direction: column;
@@ -95,6 +96,7 @@
 	}
 	.info__watch {
 		width: 100%;
+		margin: 0;
 	}
 	.flex__info {
 		flex-direction: column;

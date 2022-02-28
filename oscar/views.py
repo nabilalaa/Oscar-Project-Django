@@ -113,7 +113,7 @@ def watch_series(request, series):
             Favourite.objects.create(user_id=username, name=name_series, rate=rate, image=image)
     context = {
         "shows": Show.objects.filter(name=series.replace("-", " ")),
-        "episodes": Episode.objects.filter(name__name=series.replace("-"," "))
+        "episodes": Episode.objects.filter(name__name=series.replace("-", " "))
     }
     return render(request, "watch_series.html", context)
 
@@ -131,8 +131,8 @@ def watch_series_episode(request, series, episode):
             Favourite.objects.create(user_id=username, name=name_series, rate=rate, image=image)
     context = {
         "shows": Show.objects.filter(name=series.replace("-", " ")),
-        "episodes": Episode.objects.filter(name__name=series.replace("-"," ")),
-        "current_episode": Episode.objects.filter(name__name=series.replace("-"," "))
+        "episodes": Episode.objects.filter(name__name=series.replace("-", " ")),
+        "current_episode": Episode.objects.filter(name__name=series.replace("-", " "), number=episode)
 
     }
     return render(request, "watch_series_episode.html", context)
@@ -151,9 +151,9 @@ def register(request):
         if User.objects.filter(username=username):
 
             messages.error(request, "هذا الاسم موجود بالفعل")
-        # and len(password) >= 8
-        elif len(password) == len(re_password):
-
+        #
+        elif len(password) == len(re_password) and username and first_name and last_name and email and password and len(
+                password) >= 8:
             User.objects.create_user(
                 username=username,
                 first_name=first_name,
@@ -177,7 +177,7 @@ def log__in(request):
     username = request.POST.get("username")
     password = request.POST.get("password")
     user = authenticate(request, username=username, password=password)
-    if request.method == "POST":
+    if request.method == "POST" and username and password:
 
         if user:
             login(request, user)

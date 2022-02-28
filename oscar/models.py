@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Movie(models.Model):
     name = models.CharField(max_length=150, null=True)
     describe = models.TextField(null=True)
+    category = models.CharField(max_length=150, null=True)
     date_production = models.IntegerField(null=True)
     rate = models.FloatField(null=True)
     durations = models.IntegerField(null=True)
@@ -26,6 +27,7 @@ class Movie(models.Model):
 class Show(models.Model):
     name = models.CharField(max_length=150, null=True)
     describe = models.TextField(null=True)
+    category = models.CharField(max_length=150, null=True)
     date_production = models.IntegerField(null=True)
     rate = models.FloatField(null=True)
     durations = models.IntegerField(null=True)
