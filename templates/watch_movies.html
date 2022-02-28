@@ -1,75 +1,73 @@
-{% extends "base.html" %}
-{% block content %}
-    <!-- start watch -->
-    <section class="watch">
-        <div class="container">
-            <div class="flex__watch">
-                {% for movie in movies %}
-                    <div class="poster__watch">
-                        <img
-                                src="{{ movie.image }}"
-                                alt="{{ movie.name }}"
-                        />
-                    </div>
-                    <div class="info__watch">
-                        <h3>{{ movie.name }}</h3>
-                        <p>
-                            {{ movie.describe }}
-                        </p>
-                        <div class="flex__info">
-                            <div class="item__info">تصنيف {{ movie.type }} : الإثارة, الرعب</div>
-                            <div class="item__info">سنة الإنتاج : {{ movie.date_production }}</div>
-                            <div class="item__info">مدة الفيلم : {{ movie.durations }}</div>
-                            <div class="item__info">التصنيف : {{ movie.rate }}</div>
+{% extends "base.html" %} {% block content %}
+<!-- start watch -->
+<section class="watch">
+	<div class="container">
+		<div class="flex__watch">
+			{% for movie in movies %}
+			<div class="poster__watch">
+				<img src="{{ movie.image }}" alt="{{ movie.name }}" />
+			</div>
+			<div class="info__watch">
+				<h3>{{ movie.name }}</h3>
+				<p>{{ movie.describe }}</p>
+				<div class="flex__info">
+					<div class="item__info">
+						تصنيف {{ show.type }} : {{ show.category }}
+					</div>
+					<div class="item__info">
+						سنة الإنتاج : {{ movie.date_production }}
+					</div>
+					<div class="item__info">مدة الفيلم : {{ movie.durations }}</div>
+					<div class="item__info">التصنيف : {{ movie.rate }}</div>
 
-                            <div class="item__info">
-                                بطولة : {{ movie.stars }}
-                            </div>
-                            <div class="item__info">إخراج : {{ movie.creator }}</div>
-                            {% if user.is_authenticated %}
-                                <form class="item__info custom_form" method="post">
-                                    {% csrf_token %}
-                                    <input name="name" value="{{ movie.name }}" hidden>
-                                    <input name="username" value="{{ user.id }}" hidden>
-                                    <input name="rate" value="{{ movie.rate }}" hidden>
-                                    <input name="image" value="{{ movie.image }}" hidden>
-                                    <input class="custom_input" type="submit" value="اضافة الى المفضلات">
-                                    {% if messages %}
-                                        {% for msg in messages %}
-                                            <span style="color: #e5e5e5">{{ msg }}</span>
-                                        {% endfor %}
-                                    {% endif %}
-                                </form>
-                            {% endif %}
-
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-            {% for movie in movies %}
-                <video controls="" crossorigin="" id="player">
-                    <source
-                            src="{{ movie.video }}"
-                            type="video/mp4"
-                            size="720"
-                    />
-                </video>
-            {% endfor %}
-        </div>
-    </section>
-    <div class="episodes">
-        <div class="container">
-            <div class="flex__episodes">
-                {% for movie in movies %}
-                    <div class="episode" style=" pointer-events: none; cursor: default;width: 100%">
-                        <a href="">إخراج: {{ movie.creator }}</a>
-                    </div>
-                    <div class="episode" style=" pointer-events: none; cursor: default;width: 100%">
-                        <a href="">تمثيل: {{ movie.stars }}</a>
-                    </div>
-                {% endfor %}
-
-            </div>
-        </div>
-    </div>
+					<div class="item__info">بطولة : {{ movie.stars }}</div>
+					<div class="item__info">إخراج : {{ movie.creator }}</div>
+					{% if user.is_authenticated %}
+					<form class="item__info custom_form" method="post">
+						{% csrf_token %}
+						<input name="name" value="{{ movie.name }}" hidden />
+						<input name="username" value="{{ user.id }}" hidden />
+						<input name="rate" value="{{ movie.rate }}" hidden />
+						<input name="image" value="{{ movie.image }}" hidden />
+						<input
+							class="custom_input"
+							type="submit"
+							value="اضافة الى المفضلات"
+						/>
+						{% if messages %} {% for msg in messages %}
+						<span style="color: #e5e5e5">{{ msg }}</span>
+						{% endfor %} {% endif %}
+					</form>
+					{% endif %}
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		{% for movie in movies %}
+		<video controls="" crossorigin="" id="player">
+			<source src="{{ movie.video }}" type="video/mp4" size="720" />
+		</video>
+		{% endfor %}
+	</div>
+</section>
+<div class="episodes">
+	<div class="container">
+		<div class="flex__episodes">
+			{% for movie in movies %}
+			<div
+				class="episode"
+				style="pointer-events: none; cursor: default; width: 100%"
+			>
+				<a href="">إخراج: {{ movie.creator }}</a>
+			</div>
+			<div
+				class="episode"
+				style="pointer-events: none; cursor: default; width: 100%"
+			>
+				<a href="">تمثيل: {{ movie.stars }}</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
 {% endblock %}
