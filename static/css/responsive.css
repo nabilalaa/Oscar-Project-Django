@@ -134,11 +134,11 @@
 		justify-content: space-between;
 	}
 	.poster__watch {
-		width: 35%;
+		width: 40%;
 		height: auto;
 	}
 	.info__watch {
-		width: 65%;
+		width: 60%;
 	}
 	.episode {
 		flex: calc(100% / 5);
