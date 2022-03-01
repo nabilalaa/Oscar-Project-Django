@@ -13,14 +13,14 @@
                         />
                     </div>
                     <div class="info__watch">
-                        <h3>{{ show.name }}</h3>
+                        <h3>مشاهدة مسلسل {{ show.name }}</h3>
                         <p>
                             {{ show.describe }}
                         </p>
                         <div class="flex__info">
-                            <div class="item__info">تصنيف {{ show.type }} : {{ show.category }}</div>
+                            <div class="item__info">تصنيف المسلسل : {{ show.category }}</div>
                             <div class="item__info">سنة الإنتاج : {{ show.date_production }}</div>
-                            <div class="item__info">مدة {{ show.type }} : 89</div>
+                            <div class="item__info">مدة {{ show.type }} : {{show.durations}}</div>
                             <div class="item__info">التصنيف : {{ show.rate }}</div>
 
                             <div class="item__info">

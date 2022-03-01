@@ -15,7 +15,6 @@ class Movie(models.Model):
     platform = models.CharField(max_length=50, null=True)
     published = models.DateTimeField(auto_now_add=True)
     video = models.URLField(null=True)
-    type = models.CharField(max_length=50, null=True, default="الفيلم")
 
     def __str__(self):
         return self.name
@@ -36,7 +35,6 @@ class Show(models.Model):
     image = models.URLField(null=True)
     platform = models.CharField(max_length=50, null=True)
     published = models.DateTimeField(auto_now=True)
-    type = models.CharField(max_length=50, null=True, default="المسلسل")
 
     class Meta():
         ordering = ["-published"]

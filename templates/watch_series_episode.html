@@ -14,16 +14,15 @@
                     </div>
                     <div class="info__watch">
                         {% for episode in current_episode %}
-                            <h3>مشاهدة الحلقة {{ episode.number }} من {{ episode.name.name }}</h3>
-
+                            <h3>مشاهدة الحلقة {{ episode.number }} من مسلسل {{ episode.name.name }}</h3>
                         {% endfor %}
                         <p>
                             {{ show.describe }}
                         </p>
                         <div class="flex__info">
-                            <div class="item__info">تصنيف {{ show.type }} : {{ show.category }}</div>
+                            <div class="item__info">تصنيف المسلسل : {{ show.category }}</div>
                             <div class="item__info">سنة الإنتاج : {{ show.date_production }}</div>
-                            <div class="item__info">مدة {{ show.type }} : 89</div>
+                            <div class="item__info">مدة {{ show.type }} : {{show.durations}}</div>
                             <div class="item__info">التصنيف : {{ show.rate }}</div>
 
                             <div class="item__info">
