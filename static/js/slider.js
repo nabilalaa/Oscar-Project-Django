@@ -30,3 +30,26 @@ function prev() {
 
 nextBtn.addEventListener("click", plus);
 previousBtn.addEventListener("click", prev);
+
+if (window.matchMedia("(max-width: 576px)").matches) {
+	// console.log(document.querySelector(".pagination").lastElementChild);
+	document.querySelector(".pagination").lastElementChild.style.backgroundColor =
+		"#0000003a";
+
+	pagination.forEach((ele) => {
+		// document.querySelectorAll(".pagination li").style.backgroundColor =
+		// 	"#0000003a";
+		// console.log(();
+		ele.onclick = function () {
+			console.log(document.querySelector(ele.dataset.pag));
+			pagination.forEach((i) => {
+				i.style.backgroundColor = "#0000003a";
+			});
+			ele.style.backgroundColor = "#fca311";
+			slide.forEach((ele) => {
+				ele.classList.remove("show");
+			});
+			document.querySelector(ele.dataset.pag).classList.add("show");
+		};
+	});
+}

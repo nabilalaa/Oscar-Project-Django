@@ -203,6 +203,11 @@ nav {
 	transition: 0.6s;
 }
 
+.show {
+	visibility: visible !important;
+	opacity: 1 !important;
+}
+
 .hidden {
 	visibility: hidden;
 	opacity: 0;

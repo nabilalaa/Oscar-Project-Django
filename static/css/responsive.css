@@ -66,6 +66,14 @@
 	.previous {
 		left: 10px;
 	}
+	.slide {
+		visibility: hidden;
+		opacity: 0;
+	}
+	.next,
+	.previous {
+		display: none;
+	}
 }
 
 /* Small */
