@@ -11,23 +11,39 @@
             <div class="grid__section">
                 {% for favourite in favourites %}
                     <div class="items">
-                        <a class="item" href="{% url "watch_movies" movies=favourite.name|name_to_url %}">
-                            <div class="poster">
-                                <img src="{{ favourite.image }}" alt=""/>
-                            </div>
-                            <div class="overlay">
-                                <div class="info">
-                                    <div class="play"><i class="fas fa-play"></i></div>
-                                    <div class="rate">{{ favourite.rate }}</div>
-                                    <div class="name">{{ favourite.name }}</div>
+                        {% if "فيلم" in favourite.name %}
+                            <a class="item" href="{% url "watch_movies" movies=favourite.name|name_to_url %}">
+                                <div class="poster">
+                                    <img src="{{ favourite.image.url }}" alt=""/>
                                 </div>
-                            </div>
-                        </a>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="play"><i class="fas fa-play"></i></div>
+                                        <div class="rate">{{ favourite.rate }}</div>
+{#                                        <a href="{% url "delete" movies=favourite.name %}"></a>#}
+                                        <div class="name">{{ favourite.name }}</div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% else %}
+                            <a class="item" href="{% url "watch_series" series=favourite.name|name_to_url %}">
+                                <div class="poster">
+                                    <img src="{{ favourite.image.url }}" alt=""/>
+                                </div>
+                                <div class="overlay">
+                                    <div class="info">
+                                        <div class="play"><i class="fas fa-play"></i></div>
+                                        <div class="rate">{{ favourite.rate }}</div>
+                                        <a href="{% url "delete" movies=favourite.name %}"> </a>
+                                        <div class="name">{{ favourite.name }}</div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endif %}
                     </div>
                 {% empty %}
                     <div style="color: #fca311">المفضلات فارغة</div>
                 {% endfor %}
-
             </div>
         </div>
     </div>

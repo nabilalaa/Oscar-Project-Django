@@ -26,7 +26,7 @@
                     <div class="items">
                         <a class="item" href="{% url "watch_movies" movies=movies.name|name_to_url %}">
                             <div class="poster">
-                                <img src="{{ movies.image }}" alt=""/>
+                                <img src="{{ movies.image.url }}" alt=""/>
                             </div>
                             <div class="overlay">
                                 <div class="info">
@@ -55,7 +55,7 @@
                     <div class="items">
                         <a class="item" href="{% url "watch_series" series=series.name|name_to_url %}">
                             <div class="poster">
-                                <img src="{{ series.image }}" alt=""/>
+                                <img src="{{ series.image.url }}" alt=""/>
                             </div>
                             <div class="overlay">
                                 <div class="info">

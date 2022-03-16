@@ -93,7 +93,7 @@ def watch_movies(request, movies):
             messages.error(request, "تم الاضافة")
             print(request.POST)
         else:
-            Favourite.objects.create(user_id=username, name=name_movie, rate=rate, image=image)
+            Favourite.objects.create(user_id=username, name=name_movie, rate=float(rate), image=image)
     context = {
         "movies": Movie.objects.filter(name=movies.replace("-", " ")),
     }
@@ -105,12 +105,15 @@ def watch_series(request, series):
     username = request.POST.get("username")
     rate = request.POST.get("rate")
     image = request.POST.get("image")
+    print(request.POST)
+
     if request.method == "POST" and name_series and username and image and rate:
         if Favourite.objects.filter(name=name_series):
-            messages.error(request, "تم الاضافة")
-            print(request.POST)
+            messages.error(request, "تم الاضافة مسبقا")
         else:
-            Favourite.objects.create(user_id=username, name=name_series, rate=rate, image=image)
+            Favourite.objects.create(user_id=username, name=name_series, rate=float(rate), image=image)
+            messages.error(request, "تم الاضافة")
+
     context = {
         "shows": Show.objects.filter(name=series.replace("-", " ")),
         "episodes": Episode.objects.filter(name__name=series.replace("-", " "))
@@ -123,12 +126,13 @@ def watch_series_episode(request, series, episode):
     username = request.POST.get("username")
     rate = request.POST.get("rate")
     image = request.POST.get("image")
+    print(image)
     if request.method == "POST" and name_series and username and image and rate:
         if Favourite.objects.filter(name=name_series):
             messages.error(request, "تم الاضافة")
             print(request.POST)
         else:
-            Favourite.objects.create(user_id=username, name=name_series, rate=rate, image=image)
+            Favourite.objects.create(user_id=username, name=name_series, rate=float(rate), image=image)
     context = {
         "shows": Show.objects.filter(name=series.replace("-", " ")),
         "episodes": Episode.objects.filter(name__name=series.replace("-", " ")),
@@ -199,3 +203,9 @@ def favourite(request, username):
         "favourites": Favourite.objects.filter(user__username=username),
     }
     return render(request, "favourite.html", context)
+
+
+def delete(request, movies):
+    print(Favourite.objects.get(name=movies))
+    Favourite.objects.get(name=movies).delete()
+    return redirect("home")

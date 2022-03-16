@@ -7,11 +7,11 @@ class Movie(models.Model):
     describe = models.TextField(null=True)
     category = models.CharField(max_length=150, null=True)
     date_production = models.IntegerField(null=True)
-    rate = models.FloatField(null=True)
+    rate = models.CharField(max_length=5,null=True)
     durations = models.IntegerField(null=True)
     creator = models.CharField(max_length=150, null=True)
     stars = models.CharField(max_length=150, null=True)
-    image = models.URLField(null=True)
+    image = models.ImageField(null=True)
     platform = models.CharField(max_length=50, null=True)
     published = models.DateTimeField(auto_now_add=True)
     video = models.URLField(null=True)
@@ -28,11 +28,11 @@ class Show(models.Model):
     describe = models.TextField(null=True)
     category = models.CharField(max_length=150, null=True)
     date_production = models.IntegerField(null=True)
-    rate = models.FloatField(null=True)
+    rate = models.CharField(max_length=5,null=True)
     durations = models.IntegerField(null=True)
     creator = models.CharField(max_length=150, null=True)
     stars = models.CharField(max_length=150, null=True)
-    image = models.URLField(null=True)
+    image = models.ImageField(null=True)
     platform = models.CharField(max_length=50, null=True)
     published = models.DateTimeField(auto_now=True)
 
@@ -54,7 +54,7 @@ class Episode(models.Model):
 
 class Banner(models.Model):
     name = models.CharField(max_length=150, null=True)
-    image = models.URLField(null=True)
+    image = models.ImageField(null=True)
 
     def __str__(self):
         return self.name
@@ -63,8 +63,8 @@ class Banner(models.Model):
 class Favourite(models.Model):
     name = models.CharField(max_length=150, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    rate = models.FloatField(null=True)
-    image = models.URLField(null=True)
+    rate = models.CharField(max_length=5,null=True)
+    image = models.ImageField(null=True)
 
     def __str__(self):
         return f"{self.name}"
