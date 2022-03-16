@@ -208,4 +208,4 @@ def favourite(request, username):
 def delete(request, movies,username):
     print( username)
     Favourite.objects.get(name=movies).delete()
-    return redirect("favourite", username="nabil")
+    return redirect("favourite", username=username)
