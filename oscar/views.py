@@ -205,7 +205,7 @@ def favourite(request, username):
     return render(request, "favourite.html", context)
 
 
-def delete(request, movies):
-    print(Favourite.objects.get(name=movies))
+def delete(request, movies,username):
+    print( username)
     Favourite.objects.get(name=movies).delete()
-    return redirect("home")
+    return redirect("favourite", username="nabil")

@@ -10,22 +10,44 @@
             </div>
             <div class="grid__section">
                 {% for favourite in favourites %}
-                    <div class="items">
+                    <div class="items" style="position: relative">
+
                         {% if "فيلم" in favourite.name %}
+                            <a style="display: block;
+
+                            position: absolute;
+                            z-index: 1;
+                            font-size: 19px;
+                            background: #fca311;
+                            padding: 5px;
+                            left: 0;" href="{% url "delete" movies=favourite.name username=favourite.user %}">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+
                             <a class="item" href="{% url "watch_movies" movies=favourite.name|name_to_url %}">
                                 <div class="poster">
-                                    <img src="{{ favourite.image.url }}" alt=""/>
+                                    <img src="{{ favourite.image }}" alt=""/>
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
                                         <div class="play"><i class="fas fa-play"></i></div>
                                         <div class="rate">{{ favourite.rate }}</div>
-{#                                        <a href="{% url "delete" movies=favourite.name %}"></a>#}
                                         <div class="name">{{ favourite.name }}</div>
                                     </div>
                                 </div>
                             </a>
                         {% else %}
+                            <a style="display: block;
+
+                            position: absolute;
+                            z-index: 1;
+                            font-size: 19px;
+                            background: #fca311;
+                            padding: 5px;
+                            left: 0;" href="{% url "delete" movies=favourite.name username=favourite.user %}">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+
                             <a class="item" href="{% url "watch_series" series=favourite.name|name_to_url %}">
                                 <div class="poster">
                                     <img src="{{ favourite.image.url }}" alt=""/>
@@ -34,7 +56,6 @@
                                     <div class="info">
                                         <div class="play"><i class="fas fa-play"></i></div>
                                         <div class="rate">{{ favourite.rate }}</div>
-                                        <a href="{% url "delete" movies=favourite.name %}"> </a>
                                         <div class="name">{{ favourite.name }}</div>
                                     </div>
                                 </div>

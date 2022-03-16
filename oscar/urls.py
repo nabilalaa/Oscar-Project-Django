@@ -18,5 +18,5 @@ urlpatterns = [
     path("login", log__in, name="login"),
     path("logout", log__out, name="logout"),
     path("favourite/<str:username>", favourite, name="favourite"),
-    path("delete/<str:movies>", delete, name="delete"),
+    path("delete/<str:movies>/<str:username>", delete, name="delete"),
 ]
