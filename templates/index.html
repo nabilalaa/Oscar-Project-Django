@@ -8,7 +8,7 @@
             <div class="slides">
                 {% for banner in banners|slice:"0:5" %}
                     <div class="slide slide{{banner.name}} pag{{banner.name}}">
-                        <img style="width: 100%;" src="{{ banner.image }}"
+                        <img style="width: 100%;" src="{{ banner.image.url }}"
                              alt=""/>
                     </div>
                 {% endfor %}
