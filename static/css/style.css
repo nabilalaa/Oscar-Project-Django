@@ -204,8 +204,8 @@ nav {
 }
 
 .slide1 {
-	visibility: visible !important;
-	opacity: 1 !important;
+	visibility: visible ;
+	opacity: 1 ;
 }
 
 .hidden {
