@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'railway',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '4A2HweQlKeepcSEiZBSh',
-        'HOST': 'containers-us-west-165.railway.app',
-        'PORT': '5506',
+        'PASSWORD': 'Nnabilalaa123123',
+        'HOST': 'db.xjthgksrdxjlouienhdh.supabase.co',
+        'PORT': '5432',
     }
 }
 
@@ -128,12 +128,17 @@ STATICFILES_DIRS = [
 # STATIC_ROOT = BASE_DIR / "static"
 
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-MEDIA_ROOT = BASE_DIR / "media"
-MEDIA_URL = '/media/'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dnru0whph',
+    'API_KEY': '275415985338552',
+    'API_SECRET': 'DKD0v40ucrKTg_y23SC2xNIdSHc'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
