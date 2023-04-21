@@ -52,8 +52,11 @@
                 {% endfor %}
             </div>
             {% for episode in current_episode %}
-                <iframe class="iframe" allowfullscreen style="width: 100% ;height: 500px; border: 0"
-                        src="{{ episode.video }}"></iframe>
+                <video controls allowfullscreen >
+                    <source src="{{ episode.video }}">
+                </video>
+                <!-- <iframe class="iframe" 
+                        src="{{ episode.video }}"></iframe> -->
             {% endfor %}
         </div>
     </section>
