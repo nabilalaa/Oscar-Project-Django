@@ -9,7 +9,7 @@
             {% csrf_token %}
             <h3>تسجيل الدخول</h3>
             {% if messages %}
-                {% for msg in messages %}<div style="margin-bottom: 30px;color: #F00">{{ msg }}</div>{% endfor %}
+                {% for msg in messages %}<div class="mb-8 text-[#foo]">{{ msg }}</div>{% endfor %}
             {% endif %}
             <div class="form__group">
                 <label id="username">إسم المستخدم</label>
