@@ -3,24 +3,31 @@
 {% load static %}
 {% block content %}
     <!-- start section amazon series -->
-    <div class="section">
+    <div class="mt-14   ">
+        {# djlint:off H013,H006 #}
         <div class="container">
-            <div class="title__section">
-                <div class="title__inner">
+            <div class=" flex justify-between items-center flex-wrap text-sm mb-5">
+                <div class="flex-wrap flex items-center">
                     <h3>آخر مسلسلات Amazon</h3>
-                    <div class="icon"><img src="{% static "images/amazon.png" %}" alt=""/></div>
+                    <div class="icon">
+                        <img src="{% static "images/amazon.png" %}" alt="" />
+                    </div>
                 </div>
+                <a class="more" href="{% url 'amazon_series' %}">شاهد المزيد</a>
             </div>
-            <div class="grid__section">
+            <div class="grid grid-cols-[minmax(0,200px)] justify-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-3">
                 {% for series in series_amazon|slice:"0:12" %}
-                    <div class="items">
-                        <a class="item" href="{% url "watch_series" series=series.name|name_to_url %}">
-                            <div class="poster">
-                                <img src="{{ series.image.url }}" alt=""/>
+                    <div class="h-72 group">
+                        <a class="block  relative w-full h-full"
+                           href="{% url 'watch_series' series=series.name|name_to_url %}">
+                            <div class="absolute w-full h-full">
+                                <img src="{{ series.image.url }}" alt="" />
                             </div>
-                            <div class="overlay">
-                                <div class="info">
-                                    <div class="play"><i class="fas fa-play"></i></div>
+                            <div class="absolute h-full w-full opacity-0 bg-[#fca311] bg-opacity-50 group-hover:opacity-100 transition-opacity">
+                                <div class="relative w-full h-full">
+                                    <div class="play">
+                                        <i class="fas fa-play"></i>
+                                    </div>
                                     <div class="rate">{{ series.rate }}</div>
                                     <div class="name">{{ series.name }}</div>
                                 </div>
@@ -31,4 +38,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock content %}

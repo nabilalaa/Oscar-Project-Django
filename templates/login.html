@@ -1,9 +1,7 @@
 {% extends "base.html" %}
-
 {% block login %}
-
     sss
-{% endblock %}
+{% endblock login %}
 {% block content %}
     <!-- start login -->
     <div class="container">
@@ -11,20 +9,17 @@
             {% csrf_token %}
             <h3>تسجيل الدخول</h3>
             {% if messages %}
-                {% for msg in messages %}
-                    <div style="margin-bottom: 30px;color: #F00">{{ msg }}</div>
-                {% endfor %}
+                {% for msg in messages %}<div style="margin-bottom: 30px;color: #F00">{{ msg }}</div>{% endfor %}
             {% endif %}
-
             <div class="form__group">
                 <label id="username">إسم المستخدم</label>
-                <input type="text" name="username" id="username"/>
+                <input type="text" name="username" id="username" />
             </div>
             <div class="form__group">
                 <label>كلمة السر</label>
-                <input type="password" name="password"/>
+                <input type="password" name="password" />
             </div>
             <button>دخول</button>
         </form>
     </div>
-{% endblock %}
+{% endblock content %}

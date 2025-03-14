@@ -12,6 +12,7 @@ class Movie(models.Model):
     creator = models.CharField(max_length=150, null=True)
     stars = models.CharField(max_length=150, null=True)
     image = models.ImageField(upload_to="Movies",null=True)
+    imageUrl = models.URLField(verbose_name="imageurl",null=True)
     platform = models.CharField(max_length=50, null=True)
     published = models.DateTimeField(auto_now_add=True)
     video = models.URLField(null=True)
@@ -33,6 +34,8 @@ class Show(models.Model):
     creator = models.CharField(max_length=150, null=True)
     stars = models.CharField(max_length=150, null=True)
     image = models.ImageField(upload_to="Series",null=True)
+    imageUrl = models.URLField(verbose_name="imageurl",null=True)
+
     platform = models.CharField(max_length=50, null=True)
     published = models.DateTimeField(auto_now=True)
 

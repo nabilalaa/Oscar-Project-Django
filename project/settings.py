@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7n-_6mb5u_5me3b+-ra9mbpntke5jmd15c(-3cu4rtg6i%+1+7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["oscar.onrender.com", "127.0.0.1"]
+ALLOWED_HOSTS = [".vercel.app", "127.0.0.1"]
 
 # Application definition
 
@@ -37,8 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "oscar",
-    "oscar.templatetags"
+    "oscar.templatetags",
+    'tailwind',
+    'theme',
+    'django_browser_reload',
+
+
+
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -49,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
+      "django_browser_reload.middleware.BrowserReloadMiddleware",
+
 
 ]
 
@@ -78,14 +88,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'Nnabilalaa123123',
-        'HOST': 'db.xjthgksrdxjlouienhdh.supabase.co',
-        'PORT': '5432',
+        "ENGINE": "django.db.backends.sqlite3",
+        'NAME': BASE_DIR / "db.sqlite3", 
     }
 }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -142,3 +150,8 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"

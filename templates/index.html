@@ -2,148 +2,192 @@
 {% load custom_tags %}
 {% load static %}
 {% block content %}
-    <!-- start slider -->
-    <div class="slider">
-        <div class="container">
-            <div class="slides">
-                {% for banner in banners|slice:"0:5" %}
-                    <div class="slide slide{{banner.name}} pag{{banner.name}}">
-                        <img style="width: 100%;" src="{{ banner.image.url }}"
-                             alt=""/>
-                    </div>
-                {% endfor %}
-                <div class="next"><i class="fas fa-arrow-right"></i></div>
-                <ul class="pagination">
-                    <li data-pag=".pag1"></li>
-                    <li data-pag=".pag2"></li>
-                    <li data-pag=".pag3"></li>
-                    <li data-pag=".pag4"></li>
-                    <li data-pag=".pag5"></li>
-                </ul>
-                <div class="previous"><i class="fas fa-arrow-left"></i></div>
-            </div>
+  {# djlint:off H013,H006 #}
+  <!-- start slider -->
+  <div class="mt[30px] select-none">
+    <div class="container">
+      <div class="relative w-full md:h-[500px] h-[200px] overflow-hidden">
+        <div class="slider flex transition-transform absolute w-full h-full">
+          {% for banner in banners|slice:"0:5" %}
+            <img class="flex-shrink-0 object-cover w-full h-full"
+                 src="{{ banner.image.url }}"
+                 alt="" />
+          {% endfor %}
         </div>
+        <button class="next" onclick="nextSlide()">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+        {% comment %} <ul class="pagination">
+          <li data-pag=".pag1"></li>
+          <li data-pag=".pag2"></li>
+          <li data-pag=".pag3"></li>
+          <li data-pag=".pag4"></li>
+          <li data-pag=".pag5"></li>
+        </ul> {% endcomment %}
+        <button class="previous" onclick="prevSlide()">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
     </div>
-    <!-- start section Netflix movies -->
-    <div class="section" id="netflix_movies">
-        <div class="container">
-            <div class="title__section">
-                <div class="title__inner">
-                    <h3>آخر افلام Netflix</h3>
-                    <div class="icon"><img src="{% static "images/netflix.ico" %}" alt=""/></div>
+  </div>
+  <!-- start section Netflix movies -->
+  <div class="mt-14" id="netflix_movies">
+    <div class="container">
+      <div class="flex justify-between items-center flex-wrap text-sm mb-5">
+        <div class="flex-wrap flex items-center">
+          <h3>آخر افلام Netflix</h3>
+          <div class="icon">
+            <img src="{% static 'images/netflix.ico' %}" alt="" />
+          </div>
+        </div>
+        <a class="more" href="{% url 'netflix_movies' %}">شاهد المزيد</a>
+      </div>
+      <div class="grid grid-cols-[minmax(0,200px)] justify-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-3">
+        {% for movies in movies_netflix|slice:"0:12" %}
+          <div class="h-72 group">
+            <a class="block  relative w-full h-full"
+               href="{% url 'watch_movies' movies=movies.name|name_to_url %}">
+              <div class="absolute w-full h-full">
+                <img class="h-full" src="{{ movies.image.url }}" alt="" />
+              </div>
+              <div class="absolute h-full w-full opacity-0 bg-[#fca311] bg-opacity-50 group-hover:opacity-100 transition-opacity">
+                <div class="relative w-full h-full  ">
+                  <div class="play">
+                    <i class="fas fa-play"></i>
+                  </div>
+                  <div class="rate">{{ movies.rate }}</div>
+                  <div class="name">{{ movies.name }}</div>
                 </div>
-                <a class="more" href="{% url "netflix_movies" %}">شاهد المزيد</a>
-            </div>
-            <div class="grid__section">
-                {% for movies in movies_netflix|slice:"0:12" %}
-                    <div class="items">
-                        <a class="item" href="{% url "watch_movies" movies=movies.name|name_to_url %}">
-                            <div class="poster">
-                                <img src="{{ movies.image.url }}" alt=""/>
-                            </div>
-                            <div class="overlay">
-                                <div class="info">
-                                    <div class="play"><i class="fas fa-play"></i></div>
-                                    <div class="rate">{{ movies.rate }}</div>
-                                    <div class="name">{{ movies.name }}</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-    <!-- start section amazon movies -->
-    <div class="section" id="amazon_movies">
-        <div class="container">
-            <div class="title__section">
-                <div class="title__inner">
-                    <h3>آخر افلام Amazon</h3>
-                    <div class="icon"><img src="{% static "images/amazon.png" %}" alt=""/></div>
+  </div>
+  <!-- start section amazon movies -->
+  <div class="mt-14" id="amazon_movies">
+    <div class="container">
+      <div class="flex justify-between items-center flex-wrap text-sm mb-5">
+        <div class="flex-wrap flex items-center">
+          <h3>آخر افلام Amazon</h3>
+          <div class="icon">
+            <img class="h-full" width="" src="{% static 'images/amazon.png' %}" alt="" />
+          </div>
+        </div>
+        <a class="more" href="{% url 'amazon_movies' %}">شاهد المزيد</a>
+      </div>
+      <div class="grid grid-cols-[minmax(0,200px)] justify-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-3">
+        {% for movies in movies_amazon|slice:"0:12" %}
+          <div class="h-72 group">
+            <a class="block  relative w-full h-full"
+               href="{% url 'watch_movies' movies=movies.name|name_to_url %}">
+              <div class="absolute w-full h-full">
+                <img src="{{ movies.image.url }}" alt="" />
+              </div>
+              <div class="absolute h-full w-full opacity-0 bg-[#fca311] bg-opacity-50 group-hover:opacity-100 transition-opacity">
+                <div class="relative w-full h-full">
+                  <div class="play">
+                    <i class="fas fa-play"></i>
+                  </div>
+                  <div class="rate">{{ movies.rate }}</div>
+                  <div class="name">{{ movies.name }}</div>
                 </div>
-                <a class="more" href="{% url "amazon_movies" %}">شاهد المزيد</a>
-            </div>
-            <div class="grid__section">
-                {% for movies in movies_amazon|slice:"0:12" %}
-                    <div class="items">
-                        <a class="item" href="{% url "watch_movies" movies=movies.name|name_to_url %}">
-                            <div class="poster">
-                                <img src="{{ movies.image.url }}" alt=""/>
-                            </div>
-                            <div class="overlay">
-                                <div class="info">
-                                    <div class="play"><i class="fas fa-play"></i></div>
-                                    <div class="rate">{{ movies.rate }}</div>
-                                    <div class="name">{{ movies.name }}</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-    <!-- start section Netflix series -->
-    <div class="section" id="netflix_series">
-        <div class="container">
-            <div class="title__section">
-                <div class="title__inner">
-                    <h3>آخر مسلسلات Netflix</h3>
-                    <div class="icon">
-                        <img src="{% static "images/netflix.ico" %}" alt=""/>
-                    </div>
+  </div>
+  <!-- start section Netflix series -->
+  <div class="mt-14 " id="netflix_series">
+    <div class="container">
+      <div class="flex justify-between items-center flex-wrap text-sm mb-5 ">
+        <div class="flex-wrap flex items-center">
+          <h3>آخر مسلسلات Netflix</h3>
+          <div class="icon">
+            <img class="h-full" src="{% static 'images/netflix.ico' %}" alt="" />
+          </div>
+        </div>
+        <a class="more" href="{% url 'netflix_series' %}">شاهد المزيد</a>
+      </div>
+      <div class="grid grid-cols-[minmax(0,200px)] justify-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-3">
+        {% for series in series_netflix|slice:"0:12" %}
+          <div class="h-72 group">
+            <a class="block  relative w-full h-full"
+               href="{% url 'watch_series' series=series.name|name_to_url %}">
+              <div class="absolute w-full h-full">
+                <img src="{{ series.image.url }}" alt="" />
+              </div>
+              <div class="absolute h-full w-full opacity-0 bg-[#fca311] bg-opacity-50 group-hover:opacity-100 transition-opacity">
+                <div class="relative w-full h-full">
+                  <div class="play">
+                    <i class="fas fa-play"></i>
+                  </div>
+                  <div class="rate">{{ series.rate }}</div>
+                  <div class="name">{{ series.name }}</div>
                 </div>
-                <a class="more" href="{% url "netflix_series" %}">شاهد المزيد</a>
-            </div>
-            <div class="grid__section">
-                {% for series in series_netflix|slice:"0:12" %}
-                    <div class="items">
-                        <a class="item" href="{% url "watch_series" series=series.name|name_to_url %}">
-                            <div class="poster">
-                                <img src="{{ series.image.url }}" alt=""/>
-                            </div>
-                            <div class="overlay">
-                                <div class="info">
-                                    <div class="play"><i class="fas fa-play"></i></div>
-                                    <div class="rate">{{ series.rate }}</div>
-                                    <div class="name">{{ series.name }}</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-    <!-- start section Amazon series -->
-    <div class="section">
-        <div class="container">
-            <div class="title__section">
-                <div class="title__inner">
-                    <h3>آخر مسلسلات Amazon</h3>
-                    <div class="icon"><img src="{% static "images/amazon.png" %}" alt=""/></div>
+  </div>
+  <!-- start section Amazon series -->
+  <div class="mt-14" id="amazon_series">
+    <div class="container">
+      <div class=" flex justify-between items-center flex-wrap text-sm mb-5">
+        <div class="flex-wrap flex items-center">
+          <h3>آخر مسلسلات Amazon</h3>
+          <div class="icon">
+            <img src="{% static 'images/amazon.png' %}" alt="" />
+          </div>
+        </div>
+        <a class="more" href="{% url 'amazon_series' %}">شاهد المزيد</a>
+      </div>
+      <div class="grid grid-cols-[minmax(0,200px)] justify-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-3">
+        {% for series in series_amazon|slice:"0:12" %}
+          <div class="h-72 group">
+            <a class="block  relative w-full h-full"
+               href="{% url 'watch_series' series=series.name|name_to_url %}">
+              <div class="absolute w-full h-full">
+                <img class="h-full" src="{{ series.image.url }}" alt="" />
+              </div>
+              <div class="absolute h-full w-full opacity-0 bg-[#fca311] bg-opacity-50 group-hover:opacity-100 transition-opacity">
+                <div class="relative w-full h-full">
+                  <div class="play">
+                    <i class="fas fa-play"></i>
+                  </div>
+                  <div class="rate">{{ series.rate }}</div>
+                  <div class="name">{{ series.name }}</div>
                 </div>
-                <a class="more" href="{% url "amazon_series" %}">شاهد المزيد</a>
-            </div>
-            <div class="grid__section">
-                {% for series in series_amazon|slice:"0:12" %}
-                    <div class="items">
-                        <a class="item" href="{% url "watch_series" series=series.name|name_to_url %}">
-                            <div class="poster">
-                                <img src="{{ series.image.url }}" alt=""/>
-                            </div>
-                            <div class="overlay">
-                                <div class="info">
-                                    <div class="play"><i class="fas fa-play"></i></div>
-                                    <div class="rate">{{ series.rate }}</div>
-                                    <div class="name">{{ series.name }}</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-{% endblock %}
+  </div>
+  <script>
+    let currentIndex = 0;
+    const slider = document.querySelector(".slider");
+    const totalSlides = slider.children.length;
+ 
+    function updateSlider() {
+      slider.style.transform = `translateX(${currentIndex * 100}%)`;
+
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlider();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+  </script>
+{% endblock content %}

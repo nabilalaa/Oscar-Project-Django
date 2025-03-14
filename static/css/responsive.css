@@ -1,9 +1,7 @@
 /* mobile  */
 
 @media (max-width: 576px) {
-    .container {
-        max-width: 100%;
-    }
+   
 
     .links {
         display: none;

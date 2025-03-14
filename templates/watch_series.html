@@ -1,63 +1,65 @@
 {% extends "base.html" %}
-{% load custom_tags %}
 {% block content %}
+    {# djlint:off H013,H006 #}
     <!-- start watch -->
-    <section class="watch">
-        <div class="container">
-            <div class="flex__watch">
-                {% for show in shows %}
-                    <div class="poster__watch">
-                        <img
-                                src="{{ show.image.url }}"
-                                alt="{{ show.name }}"
-                        />
-                    </div>
-                    <div class="info__watch">
-                        <h3>مشاهدة {{ show.name }}</h3>
-                        <p>
-                            {{ show.describe }}
-                        </p>
-                        <div class="flex__info">
-                            <div class="item__info">تصنيف المسلسل : {{ show.category }}</div>
-                            <div class="item__info">سنة الإنتاج : {{ show.date_production }}</div>
-                            <div class="item__info">مدة المسلسل: {{show.durations}} دقيقة</div>
-                            <div class="item__info">التصنيف : {{ show.rate }}</div>
-
-                            <div class="item__info">
-                                بطولة : {{ show.stars}}
+    {% comment %} style="background-image: url( {{ show.image.url }}" {% endcomment %}
+    {% for show in shows %}
+        <section class="relative bg-cover bg-center mb-6"
+                 style="background-image: url( {{ show.image.url }}">
+            <div class=" bg-[#fca311] bg-opacity-50">
+                <div class="container">
+                    <div class="flex items-center  gap-5 p-4  w-full h-full max-lg:flex-col">
+                        <div class="w-1/5 max-lg:w-[300px]">
+                            <img src="{{ show.image.url }}" alt="{{ show.name }}" />
+                        </div>
+                        <div class="w-[80%] max-md:w-full max-sm:text-right">
+                            <h3 class="text-2xl font-semibold">مشاهدة{{ show.name }}</h3>
+                            <p class="my-10">{{ show.describe }}</p>
+                            <div class="flex flex-wrap justify-between max-sm:flex-col">
+                                <div class="mb-5 w-1/2 leading-normal">تصنيف الفيلم : {{ show.category }}</div>
+                                <div class="mb-5 w-1/2 leading-normal">سنة الإنتاج : {{ show.date_production }}</div>
+                                <div class="mb-5 w-1/2 leading-normal">مدة الفيلم : {{ show.durations }} دقيقة</div>
+                                <div class="mb-5 w-1/2 leading-normal">التصنيف : {{ show.rate }}</div>
+                                <div class="mb-5 w-1/2 leading-normal">بطولة : {{ show.stars }}</div>
+                                <div class="mb-5 w-1/2 leading-normal">إخراج : {{ show.creator }}</div>
+                                {% if user.is_authenticated %}
+                                    <form class="item__info custom_form" method="post">
+                                        {% csrf_token %}
+                                        <input name="name" value="{{ show.name }}" hidden />
+                                        <input name="username" value="{{ user.id }}" hidden />
+                                        <input name="rate" type="number" value="{{ show.rate }}" hidden />
+                                        <input name="image" value="{{ show.image.url }}" hidden />
+                                        <input class="custom_input" type="submit" value="اضافة الى المفضلات" />
+                                        {% if messages %}
+                                            {% for msg in messages %}<span>{{ msg }}</span>{% endfor %}
+                                        {% endif %}
+                                    </form>
+                                {% endif %}
                             </div>
-                            <div class="item__info">إخراج : {{ show.creator }} </div>
-                            {% if user.is_authenticated %}
-                                <form class="item__info custom_form" method="post">
-                                    {% csrf_token %}
-                                    <input name="name" value="{{ show.name }}" hidden>
-                                    <input name="username" value="{{ user.id }}" hidden>
-                                    <input name="rate" value="{{ show.rate }}" hidden>
-                                    <input name="image" value="{{ show.image }}" hidden>
-                                    <input class="custom_input" type="submit" value="اضافة الى المفضلات">
-                                    {% if messages %}
-                                        {% for msg in messages %}
-                                            <span style="color: #e5e5e5">{{ msg }}</span>
-                                        {% endfor %}
-                                    {% endif %}
-                                </form>
-                            {% endif %}
                         </div>
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endfor %}
+    {% for show in shows %}
+        <video controls allowfullscreen>
+            <source src="{{ show.video }}" />
+        </video>
+        <!-- <iframe allowfullscreen style="width: 100%; height: 500px; border: 0" src="{{ show.video }}"></iframe> -->
+    {% endfor %}
     <div class="episodes">
         <div class="container">
-            <div class="flex__episodes">
-                {% for episode in episodes %}
-                    <div class="episode">
-                        <a href="{% url "watch_series_episode"  series=episode.name.name|name_to_url episode=episode.number %}"> الحلقة {{ episode.number }}</a>
+            <div class="flex__episodes flex flex-col">
+                {% for show in shows %}
+                    <div class="episode w-full">
+                        <a href="">إخراج: {{ show.creator }}</a>
+                    </div>
+                    <div class="episode w-full">
+                        <a href="">تمثيل: {{ show.stars }}</a>
                     </div>
                 {% endfor %}
-
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock content %}
