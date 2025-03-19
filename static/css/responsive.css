@@ -1,19 +1,8 @@
 /* mobile  */
 
 @media (max-width: 576px) {
+
    
-
-    .links {
-        display: none;
-    }
-
-    .logo {
-        display: none;
-    }
-
-    .flex__nav {
-        justify-content: space-between;
-    }
 
     .links__footer {
         width: calc(95% / 1);
@@ -99,21 +88,8 @@
 
 /* Small */
 @media (min-width: 577px) and (max-width: 768px) {
-    .container {
-        max-width: 540px;
-    }
-
-    .links {
-        display: none;
-    }
-
-    .logo {
-        display: none;
-    }
-
-    .flex__nav {
-        justify-content: space-between;
-    }
+    
+   
 
     .flex__watch {
         flex-direction: column;
@@ -161,21 +137,7 @@
 
 /* Medium */
 @media (min-width: 769px) and (max-width: 992px) {
-    .container {
-        max-width: 720px;
-    }
 
-    .links {
-        display: none;
-    }
-
-    .logo {
-        display: none;
-    }
-
-    .flex__nav {
-        justify-content: space-between;
-    }
 
     .poster__watch {
         width: 40%;
@@ -198,9 +160,7 @@
 
 /* large */
 @media (min-width: 993px) and (max-width: 1199px) {
-    .container {
-        max-width: 960px;
-    }
+   
 
     .side__menu {
         display: none;
