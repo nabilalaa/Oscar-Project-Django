@@ -803,28 +803,28 @@ select {
   position: relative;
 }
 
-.right-0 {
-  right: 0px;
+.\!left-0 {
+  left: 0px !important;
 }
 
-.top-0 {
-  top: 0px;
+.bottom-0 {
+  bottom: 0px;
 }
 
-.right-\[-350px\] {
-  right: -350px;
-}
-
-.\!right-0 {
-  right: 0px !important;
+.left-0 {
+  left: 0px;
 }
 
 .left-\[-350px\] {
   left: -350px;
 }
 
-.\!left-0 {
-  left: 0px !important;
+.right-0 {
+  right: 0px;
+}
+
+.top-0 {
+  top: 0px;
 }
 
 .z-50 {
@@ -862,6 +862,10 @@ select {
   margin-right: 0.5rem;
 }
 
+.mr-3 {
+  margin-right: 0.75rem;
+}
+
 .mt-14 {
   margin-top: 3.5rem;
 }
@@ -870,16 +874,8 @@ select {
   margin-top: 0.5rem;
 }
 
-.mr-3 {
-  margin-right: 0.75rem;
-}
-
 .mt-3 {
   margin-top: 0.75rem;
-}
-
-.ml-3 {
-  margin-left: 0.75rem;
 }
 
 .block {
@@ -920,10 +916,6 @@ select {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-svh {
-  height: 100svh;
 }
 
 .w-1\/2 {
@@ -970,6 +962,10 @@ select {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+
+.resize {
+  resize: both;
 }
 
 .grid-cols-\[minmax\(0\2c 200px\)\] {
@@ -1041,18 +1037,9 @@ select {
   background-color: rgb(252 163 17 / var(--tw-bg-opacity, 1));
 }
 
-.bg-\[fca311\] {
-  background-color: fca311;
-}
-
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
-}
-
-.bg-slate-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(203 213 225 / var(--tw-bg-opacity, 1));
 }
 
 .bg-opacity-50 {
@@ -1096,10 +1083,6 @@ select {
   padding: 40px;
 }
 
-.\!p-\[40px\] {
-  padding: 40px !important;
-}
-
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -1113,6 +1096,10 @@ select {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.pt-\[56\.25\%\] {
+  padding-top: 56.25%;
 }
 
 .font-serif {
@@ -1186,10 +1173,8 @@ select {
   opacity: 0;
 }
 
-.transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+.transition-all {
+  transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -1202,12 +1187,6 @@ select {
 
 .transition-transform {
   transition-property: transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.transition-all {
-  transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -1246,10 +1225,6 @@ select {
 }
 
 @media not all and (min-width: 640px) {
-  .max-sm\:left-0 {
-    left: 0px;
-  }
-
   .max-sm\:left-\[-100\%\] {
     left: -100%;
   }
@@ -1276,6 +1251,10 @@ select {
 @media (min-width: 768px) {
   .md\:h-\[500px\] {
     height: 500px;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
   }
 
   .md\:grid-cols-4 {

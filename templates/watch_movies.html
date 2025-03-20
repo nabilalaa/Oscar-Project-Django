@@ -14,13 +14,13 @@
                         <div class="w-[80%] max-md:w-full max-sm:text-right">
                             <h3 class="text-2xl font-semibold">مشاهدة{{ movie.name }}</h3>
                             <p class="my-10">{{ movie.describe }}</p>
-                            <div class="flex flex-wrap justify-between max-sm:flex-col">
-                                <div class="mb-5 w-1/2 leading-normal">تصنيف الفيلم : {{ show.category }}</div>
-                                <div class="mb-5 w-1/2 leading-normal">سنة الإنتاج : {{ movie.date_production }}</div>
-                                <div class="mb-5 w-1/2 leading-normal">مدة الفيلم : {{ movie.durations }} دقيقة</div>
-                                <div class="mb-5 w-1/2 leading-normal">التصنيف : {{ movie.rate }}</div>
-                                <div class="mb-5 w-1/2 leading-normal">بطولة : {{ movie.stars }}</div>
-                                <div class="mb-5 w-1/2 leading-normal">إخراج : {{ movie.creator }}</div>
+                            <div class="flex flex-wrap justify-between max-sm:flex-col font-bold">
+                                <div class="mb-5 w-full md:w-1/2 leading-normal">تصنيف الفيلم : {{ show.category }}</div>
+                                <div class="mb-5 w-full md:w-1/2 leading-normal">سنة الإنتاج : {{ movie.date_production }}</div>
+                                <div class="mb-5 w-full md:w-1/2 leading-normal">مدة الفيلم : {{ movie.durations }} دقيقة</div>
+                                <div class="mb-5 w-full md:w-1/2 leading-normal">التصنيف : {{ movie.rate }}</div>
+                                <div class="mb-5 w-full md:w-1/2 leading-normal">بطولة : {{ movie.stars }}</div>
+                                <div class="mb-5 w-full md:w-1/2 leading-normal">إخراج : {{ movie.creator }}</div>
                                 {% if user.is_authenticated %}
                                     <form class="item__info custom_form" method="post">
                                         {% csrf_token %}
@@ -41,12 +41,19 @@
             </div>
         </section>
     {% endfor %}
-    {% for movie in movies %}
-        <video controls allowfullscreen>
-            <source src="{{ movie.video }}" />
-        </video>
-        <!-- <iframe allowfullscreen style="width: 100%; height: 500px; border: 0" src="{{ movie.video }}"></iframe> -->
-    {% endfor %}
+    <div class="container relative overflow-hidden w-full pt-[56.25%]">
+        {% for movie in movies %}
+            {% if movie.video %}
+                <video controls allowfullscreen>
+                    <source src="{{ movie.video }}" />
+                </video>
+            {% else %}
+                <iframe allowfullscreen
+                        class="absolute top-0 bottom-0 right-0 left-0 w-full h-full"
+                        src="{{ movie.iframe }}"></iframe>
+            {% endif %}
+        {% endfor %}
+    </div>
     <div class="episodes">
         <div class="container">
             <div class="flex__episodes flex flex-col">
@@ -61,4 +68,24 @@
             </div>
         </div>
     </div>
+    <script type="application/javascript">
+        function resizeIFrameToFitContent( iFrame ) {
+        
+            iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
+            iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+        }
+        
+        window.addEventListener('DOMContentLoaded', function(e) {
+        
+            var iFrame = document.getElementById( 'iFrame1' );
+            resizeIFrameToFitContent( iFrame );
+        
+            // or, to resize all iframes:
+            var iframes = document.querySelectorAll("iframe");
+            for( var i = 0; i < iframes.length; i++) {
+                resizeIFrameToFitContent( iframes[i] );
+            }
+        } );
+        
+    </script>
 {% endblock content %}
