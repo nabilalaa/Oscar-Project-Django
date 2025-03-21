@@ -383,29 +383,3 @@ video {
   height: 100%;
 }
 
-.episodes {
-  margin-top: 30px;
-}
-
-.flex__episodes {
-  display: flex;
-  align-items: center;
-  background-color: #e5e5e5;
-  flex-wrap: wrap;
-  padding: 10px;
-}
-
-.episode {
-  background-color: #fca311;
-  margin: 0 3px 6px 3.7px;
-  width: calc(95% / 8);
-  border-radius: 10px;
-}
-
-.episode a {
-  display: block;
-  padding: 10px;
-  color: #000;
-  text-align: center;
-  font-weight: bold;
-}

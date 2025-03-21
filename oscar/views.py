@@ -123,11 +123,9 @@ def watch_series_episode(request, series, episode):
     username = request.POST.get("username")
     rate = request.POST.get("rate")
     image = request.POST.get("image")
-    print(image)
     if request.method == "POST" and name_series and username and image and rate:
         if Favourite.objects.filter(name=name_series):
             messages.error(request, "تم الاضافة")
-            print(request.POST)
         else:
             Favourite.objects.create(
                 user_id=username, name=name_series, rate=float(rate), image=image
@@ -135,7 +133,7 @@ def watch_series_episode(request, series, episode):
     context = {
         "shows": Show.objects.filter(name=series.replace("-", " ")),
         "episodes": Episode.objects.filter(name__name=series.replace("-", " ")),
-        "current_episode": Episode.objects.filter(
+        "current_episode": Episode.objects.get(
             name__name=series.replace("-", " "), number=episode
         ),
     }
