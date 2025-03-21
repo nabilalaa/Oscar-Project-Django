@@ -1,0 +1,48 @@
+<!-- start section Items -->
+{# djlint:off H013,H006 #}
+{% load custom_tags %}
+{% load static %}
+<div class="mt-14">
+    <div class="container">
+        <div class="flex justify-between items-center flex-wrap text-sm mb-5">
+            <div class="flex-wrap flex items-center">
+                <h3>{{ title }}</h3>
+                <div class="icon">
+                    <img src="{% static logo %}" alt="" />
+                </div>
+            </div>
+            <a class="more" href="{% url more %}">شاهد المزيد</a>
+        </div>
+        <div class="grid grid-cols-[minmax(0,200px)] justify-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-3">
+            {% for item in watch|slice:"0:12" %}
+                <div class="h-72 group">
+                    <a class="block  relative w-full h-full"
+                       href="{% url link item.name|name_to_url %}">
+                        <div class="absolute w-full h-full">
+                            {% if item.image %}
+                                <img class="h-full"
+                                     src="https://res.cloudinary.com/dnru0whph/image/upload/v1/{{ item.image }}"
+                                     alt="" />
+                            {% elif item.imageUrl %}
+                                <img class="h-full" src="{{ item.imageUrl }}" alt="" />
+                            {% else %}
+                                <img class="h-full w-full object-cover"
+                                     src=" https://www.critics.io/img/item/poster-placeholder.png"
+                                     alt="" />
+                            {% endif %}
+                        </div>
+                        <div class="absolute h-full w-full opacity-0 bg-[#fca311] bg-opacity-50 group-hover:opacity-100 transition-opacity">
+                            <div class="relative w-full h-full  ">
+                                <div class="play">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div class="rate">{{ item.rate }}</div>
+                                <div class="name">{{ item.name }}</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

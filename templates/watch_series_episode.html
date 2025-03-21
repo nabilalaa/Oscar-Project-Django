@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-
-
 {% load custom_tags %}
 {% block content %}
     <!-- start watch -->
@@ -8,30 +6,19 @@
         <div class="container">
             <div class="flex__watch">
                 {% for show in shows %}
-
                     <div class="poster__watch">
-                        <img
-                                src="{{ show.image.url }}"
-                                alt="{{ show.name }}"
-                        />
+                        <img src="{{ show.imageUrl }}" alt="{{ show.name }}" />
                     </div>
                     <div class="info__watch">
-                        {% for episode in current_episode %}
-                            <h3>مشاهدة الحلقة {{ episode.number }} من {{ episode.name.name }}</h3>
-                        {% endfor %}
-                        <p>
-                            {{ show.describe }}
-                        </p>
+                        {% for episode in current_episode %}<h3>مشاهدة الحلقة {{ episode.number }} من {{ episode.name.name }}</h3>{% endfor %}
+                        <p>{{ show.describe }}</p>
                         <div class="flex__info">
                             <div class="item__info">تصنيف المسلسل : {{ show.category }}</div>
                             <div class="item__info">سنة الإنتاج : {{ show.date_production }}</div>
                             <div class="item__info">مدة المسلسل: {{ show.durations }} دقيقة</div>
                             <div class="item__info">التصنيف : {{ show.rate }}</div>
-
-                            <div class="item__info">
-                                بطولة : {{ show.stars }}
-                            </div>
-                            <div class="item__info">إخراج : {{ show.creator }} </div>
+                            <div class="item__info">بطولة : {{ show.stars }}</div>
+                            <div class="item__info">إخراج : {{ show.creator }}</div>
                             {% if user.is_authenticated %}
                                 <form class="item__info custom_form" method="post">
                                     {% csrf_token %}
@@ -41,9 +28,7 @@
                                     <input name="image" value="{{ show.image.url }}" hidden>
                                     <input class="custom_input" type="submit" value="اضافة الى المفضلات">
                                     {% if messages %}
-                                        {% for msg in messages %}
-                                            <span style="color: #e5e5e5">{{ msg }}</span>
-                                        {% endfor %}
+                                        {% for msg in messages %}<span style="color: #e5e5e5">{{ msg }}</span>{% endfor %}
                                     {% endif %}
                                 </form>
                             {% endif %}
@@ -52,11 +37,10 @@
                 {% endfor %}
             </div>
             {% for episode in current_episode %}
-                <video controls allowfullscreen >
+                <video controls allowfullscreen>
                     <source src="{{ episode.video }}">
                 </video>
-                <!-- <iframe class="iframe" 
-                        src="{{ episode.video }}"></iframe> -->
+                <!-- <iframe class="iframe" src="{{ episode.video }}"></iframe> -->
             {% endfor %}
         </div>
     </section>
@@ -68,10 +52,7 @@
                         <a href="{% url "watch_series_episode"  series=episode.name.name|name_to_url episode=episode.number %}">الحلقة {{ episode.number }}</a>
                     </div>
                 {% endfor %}
-
             </div>
         </div>
     </div>
-
 {% endblock %}
-

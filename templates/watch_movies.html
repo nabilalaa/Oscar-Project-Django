@@ -4,12 +4,22 @@
     <!-- start watch -->
     {% for movie in movies %}
         <section class="relative bg-cover bg-center mb-6 "
-                 style="background-image: url( {{ movie.image.url }}">
+                 style="background-image: url( {{ movie.imageUrl }}">
             <div class=" bg-[#fca311] bg-opacity-50">
                 <div class="container">
                     <div class="flex items-center  gap-5 p-4  w-full h-full max-lg:flex-col">
                         <div class="w-1/5 max-lg:w-[300px]">
-                            <img src="{{ movie.image.url }}" alt="{{ movie.name }}" />
+                            {% if movies.image %}
+                                <img class="h-full"
+                                     src="https://res.cloudinary.com/dnru0whph/image/upload/v1/{{ movies.image }}"
+                                     alt="" />
+                            {% elif movies.imageUrl %}
+                                <img class="h-full" src="{{ movies.imageUrl }}" alt="" />
+                            {% else %}
+                                <img class="h-full w-full object-cover"
+                                     src=" https://www.critics.io/img/movies/poster-placeholder.png"
+                                     alt="" />
+                            {% endif %}
                         </div>
                         <div class="w-[80%] max-md:w-full max-sm:text-right">
                             <h3 class="text-2xl font-semibold">مشاهدة{{ movie.name }}</h3>
@@ -27,7 +37,11 @@
                                         <input name="name" value="{{ movie.name }}" hidden />
                                         <input name="username" value="{{ user.id }}" hidden />
                                         <input name="rate" type="number" value="{{ movie.rate }}" hidden />
-                                        <input name="image" value="{{ movie.image.url }}" hidden />
+                                        {% if show.image %}
+                                            <input name="image" value="{{ show.image.url }}" hidden />
+                                        {% else %}
+                                            <input name="image" value="{{ show.imageUrl }}" hidden />
+                                        {% endif %}
                                         <input class="custom_input" type="submit" value="اضافة الى المفضلات" />
                                         {% if messages %}
                                             {% for msg in messages %}<span>{{ msg }}</span>{% endfor %}

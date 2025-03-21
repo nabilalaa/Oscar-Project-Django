@@ -1,4 +1,5 @@
-{% load static %} {% load static tailwind_tags %}
+{% load static %}
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="ar">
   <head>
@@ -9,53 +10,40 @@
     <title>Oscar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap"
+          rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" />
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    {% comment %} <link rel="stylesheet" href="{% static "css/responsive.css"
-    %}" /> {% endcomment %} {% tailwind_css %}
+    {% comment %} <link rel="stylesheet" href="{% static "css/responsive.css" %}" /> {% endcomment %} {% tailwind_css %}
   </head>
   <body x-data="{sideMenu:false}">
     <!-- start nav -->
     <nav class="py-8 px-3 text-base font-bold" x-data="{open:false} ">
       <div class="container">
-        <div class="flex justify-between items-center">
-          <div class="logo hidden lg:block">
-            <a href="{% url 'home' %}">Oscar</a>
-          </div>
-
-          <ul class="links mx-24 max-lg:hidden flex justify-between w-full">
+        <div class="flex justify-between items-center ">
+          <a class="uppercase text-xl le hidden lg:block font-[Pasajero] tracking-[4px]"
+             href="{% url 'home' %}">Oscar</a>
+          <ul class="links mx-24 max-lg:hidden flex justify-between w-1/2 ">
             <li>
               <a href="{% url 'home' %}">الصفحة الرئيسية</a>
             </li>
             <li x-data="{ open: false }" class="relative cursor-pointer">
               <div x-on:click="open = ! open" class="items-center flex">
-                المنصات<span
-                  class="block w-3 h-3 border-x-8 border-x-transparent border-t-8 border-t-[#fca311] mt-2 mr-2"
-                ></span>
+                المنصات<span class="block w-3 h-3 border-x-8 border-x-transparent border-t-8 border-t-[#fca311] mt-2 mr-2"></span>
               </div>
-
-              <ul
-                class="absolute z-50 bg-[#e5e5e5] mt-2 w-[130px] [&>li]:p-2 [li]:last-of-type:border-0 [&>li]:border-b [&>li]:border-[#fff]"
-                x-show="open"
-                x-cloak
-                @click.outside="open=false"
-                x-transition
-              >
+              <ul class="absolute z-50 bg-[#e5e5e5] mt-2 w-[130px] [&>li]:p-2 [li]:last-of-type:border-0 [&>li]:border-b [&>li]:border-[#fff]"
+                  x-show="open"
+                  x-cloak
+                  @click.outside="open=false"
+                  x-transition>
                 <li class="hover:bg-[#fca311]">
-                  <a href="" class="text-[#14213d] capitalize block p-2"
-                    >amazon</a
-                  >
+                  <a href="{% url 'amazon' %}" class="text-[#14213d] capitalize block p-2">amazon</a>
                 </li>
                 <li class="hover:bg-[#fca311]">
-                  <a href="" class="text-[#14213d] capitalize block p-2"
-                    >netflix</a
-                  >
+                  <a href="{% url 'netflix' %}"
+                     class="text-[#14213d] capitalize block p-2">netflix</a>
                 </li>
               </ul>
             </li>
@@ -72,38 +60,32 @@
               <a href="#">عنا</a>
             </li>
           </ul>
-          <div
-            class="sidemenu__btn block lg:hidden text-[#fca311] cursor-pointer text-xl"
-            @click="sideMenu= !sideMenu"
-          >
+          <div class="sidemenu__btn block lg:hidden text-[#fca311] cursor-pointer text-xl"
+               @click="sideMenu= !sideMenu">
             <i class="fas fa-bars"></i>
           </div>
           <ul class="register">
             {% if user.is_authenticated %}
-            <li>
-              <a href="{% url 'logout' %}">خروج</a>
-            </li>
-            <li>
-              <a href="{% url 'favourite' username=user.username %}"
-                >{{ user.username }}</a
-              >
-            </li>
+              <li>
+                <a href="{% url 'logout' %}">خروج</a>
+              </li>
+              <li>
+                <a href="{% url 'favourite' username=user.username %}">{{ user.username }}</a>
+              </li>
             {% else %}
-            <li>
-              <a href="{% url 'login' %}">دخول</a>
-            </li>
-            <li>
-              <a href="{% url 'register' %}">تسجيل</a>
-            </li>
+              <li>
+                <a href="{% url 'login' %}">دخول</a>
+              </li>
+              <li>
+                <a href="{% url 'register' %}">تسجيل</a>
+              </li>
             {% endif %}
           </ul>
         </div>
       </div>
     </nav>
-    <div
-      class="fixed top-0 h-full bg-[#fca311] max-sm:w-full max-sm:left-[-100%] p-[40px] w-[350px] transition-all z-50 left-[-350px]"
-      :class="{'!left-0':sideMenu}"
-    >
+    <div class="fixed top-0 h-full bg-[#fca311] max-sm:w-full max-sm:left-[-100%] p-[40px] w-[350px] transition-all z-50 left-[-350px]"
+         :class="{'!left-0':sideMenu}">
       <div class="closemenu__btn" @click="sideMenu= false">
         <i class="fas fa-times"></i>
       </div>
@@ -115,17 +97,13 @@
         <li x-data="{ open: false }" class="relative cursor-pointer">
           <div x-on:click="open = ! open" class="items-center flex">
             المنصات
-            <span
-              class="block w-3 h-3 border-x-8 border-x-transparent border-t-8 mt-2 mr-2"
-            ></span>
+            <span class="block w-3 h-3 border-x-8 border-x-transparent border-t-8 mt-2 mr-2"></span>
           </div>
-          <ul
-            class="capitalize mt-3 mr-3"
-            x-show="open"
-            x-cloak
-            @click.outside="open=false"
-            x-transition
-          >
+          <ul class="capitalize mt-3 mr-3"
+              x-show="open"
+              x-cloak
+              @click.outside="open=false"
+              x-transition>
             <li>
               <a href="{% url 'amazon' %}">amazon</a>
             </li>
@@ -149,7 +127,7 @@
       </ul>
     </div>
     {% block content %}
-    <div>{# djlint:off H013,H006 #}</div>
+      <div>{# djlint:off H013,H006 #}</div>
     {% endblock content %}
     <!-- start footer -->
     <footer>

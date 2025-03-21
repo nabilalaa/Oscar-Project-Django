@@ -21,7 +21,16 @@
                         <a class="block  relative w-full h-full"
                            href="{% url 'watch_series' series=series.name|name_to_url %}">
                             <div class="absolute w-full h-full">
-                                <img src="{{ series.image.url }}" alt="" />
+                                {% if series.image %}
+                                    <img class="h-full"
+                                         src="https://res.cloudinary.com/dnru0whph/image/upload/v1/{{ series.image }}"
+                                         alt="" />
+                                {% elif series.imageUrl %}
+                                    <img class="h-full" src="{{ series.imageUrl }}" alt="" />
+                                {% else %}
+                                    <img src=" https://www.critics.io/img/movies/poster-placeholder.png"
+                                         alt="" />
+                                {% endif %}
                             </div>
                             <div class="absolute h-full w-full opacity-0 bg-[#fca311] bg-opacity-50 group-hover:opacity-100 transition-opacity">
                                 <div class="relative w-full h-full">

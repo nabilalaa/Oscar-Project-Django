@@ -3,13 +3,21 @@
     {# djlint:off H013,H006 #}
     <!-- start watch -->
     {% for show in shows %}
-        <section class="relative bg-cover bg-center mb-6"
-                 style="background-image: url( {{ show.image.url }}">
+        <section class="relative bg-cover bg-center mb-6 bg-[url(show.imageUrl)]">
             <div class=" bg-[#fca311] bg-opacity-50">
                 <div class="container">
                     <div class="flex items-center  gap-5 p-4  w-full h-full max-lg:flex-col">
                         <div class="w-1/5 max-lg:w-[300px]">
-                            <img src="{{ show.image.url }}" alt="{{ show.name }}" />
+                            {% if show.image %}
+                                <img class="h-full"
+                                     src="https://res.cloudinary.com/dnru0whph/image/upload/v1/{{ show.image }}"
+                                     alt="" />
+                            {% elif show.imageUrl %}
+                                <img class="h-full" src="{{ show.imageUrl }}" alt="" />
+                            {% else %}
+                                <img src=" https://www.critics.io/img/movies/poster-placeholder.png"
+                                     alt="" />
+                            {% endif %}
                         </div>
                         <div class="w-[80%] max-md:w-full max-sm:text-right">
                             <h3 class="text-2xl font-semibold">مشاهدة{{ show.name }}</h3>
@@ -27,7 +35,11 @@
                                         <input name="name" value="{{ show.name }}" hidden />
                                         <input name="username" value="{{ user.id }}" hidden />
                                         <input name="rate" type="number" value="{{ show.rate }}" hidden />
-                                        <input name="image" value="{{ show.image.url }}" hidden />
+                                        {% if show.image %}
+                                            <input name="image" value="{{ show.image.url }}" hidden />
+                                        {% else %}
+                                            <input name="image" value="{{ show.imageUrl }}" hidden />
+                                        {% endif %}
                                         <input class="custom_input" type="submit" value="اضافة الى المفضلات" />
                                         {% if messages %}
                                             {% for msg in messages %}<span>{{ msg }}</span>{% endfor %}
@@ -42,15 +54,16 @@
         </section>
     {% endfor %}
     <div class="container relative overflow-hidden w-full pt-[56.25%]">
-        {% for show in shows %}
-            {% if show.video %}
+        {{ episodes }}
+        {% for episode in episodes %}
+            {% if episode.video %}
                 <video controls allowfullscreen>
-                    <source src="{{ show.video }}" />
+                    <source src="{{ episode.video }}" />
                 </video>
             {% else %}
                 <iframe allowfullscreen
                         class="absolute top-0 bottom-0 right-0 left-0 w-full h-full"
-                        src="{{ movie.iframe }}"></iframe>
+                        src="{{ episode.iframe }}"></iframe>
             {% endif %}
         {% endfor %}
     </div>

@@ -3,39 +3,7 @@
 {% load static %}
 {% block content %}
     {# djlint:off H013,H006 #}
-    <!-- start section amazon movies -->
-    <div class="mt-14" id="amazon_movies">
-        <div class="container">
-            <div class="flex justify-between items-center flex-wrap text-sm mb-5">
-                <div class="flex-wrap flex items-center">
-                    <h3>آخر افلام Amazon</h3>
-                    <div class="icon">
-                        <img height="" width="" src="{% static 'images/amazon.png' %}" alt="" />
-                    </div>
-                </div>
-                <a class="more" href="{% url 'amazon_movies' %}">شاهد المزيد</a>
-            </div>
-            <div class="grid grid-cols-[minmax(0,200px)] justify-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-3">
-                {% for movies in movies_amazon|slice:"0:12" %}
-                    <div class="h-72 group">
-                        <a class="block  relative w-full h-full"
-                           href="{% url 'watch_movies' movies=movies.name|name_to_url %}">
-                            <div class="absolute w-full h-full">
-                                <img src="{{ movies.image.url }}" alt="" />
-                            </div>
-                            <div class="absolute h-full w-full opacity-0 bg-[#fca311] bg-opacity-50 group-hover:opacity-100 transition-opacity">
-                                <div class="relative w-full h-full">
-                                    <div class="play">
-                                        <i class="fas fa-play"></i>
-                                    </div>
-                                    <div class="rate">{{ movies.rate }}</div>
-                                    <div class="name">{{ movies.name }}</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+    <!-- start section Amazon Movies -->
+  {% include "Section_Items.html" with title="آخر افلام amazon" logo="images/amazon.png" more="amazon_movies" watch=movies_amazon link="watch_movies" %}
+
 {% endblock content %}
