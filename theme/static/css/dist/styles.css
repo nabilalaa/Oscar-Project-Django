@@ -1082,18 +1082,6 @@ select {
   background-image: url(show.imageUrl);
 }
 
-.bg-\[url\(\{show\.imageUrl\}\)\] {
-  background-image: url({show.imageUrl});
-}
-
-.bg-\[url\(\"\"\)\] {
-  background-image: url("");
-}
-
-.bg-\[url\(\"show\.imageUrl\"\)\] {
-  background-image: url("show.imageUrl");
-}
-
 .bg-cover {
   background-size: cover;
 }
